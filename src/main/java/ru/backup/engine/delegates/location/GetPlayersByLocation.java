@@ -1,27 +1,26 @@
 package ru.backup.engine.delegates.location;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import org.camunda.bpm.engine.delegate.DelegateExecution;
-import org.camunda.bpm.engine.delegate.JavaDelegate;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-import ru.backup.engine.DebugUtils;
+import ru.backup.engine.delegates.DelegateExecutionHandler;
+import ru.backup.engine.delegates.JavaDelegateHandler;
+import ru.backup.engine.services.LocationService;
 
 @Component("getPlayersByLocation")
-public class GetPlayersByLocation implements JavaDelegate {
+public class GetPlayersByLocation extends JavaDelegateHandler {
 
-  private static final Logger log = LoggerFactory.getLogger(GetPlayersByLocation.class);
+  private final LocationService locationService;
 
-  @Override
-  public void execute(DelegateExecution delegateExecution) throws Exception {
-    DebugUtils.print(log, delegateExecution);
-    delegateExecution.setVariable("playerCollection", getPlayers());
+  public GetPlayersByLocation(LocationService locationService) {
+    this.locationService = locationService;
   }
 
-  private List<String> getPlayers() {
-    return new ArrayList<>(Arrays.asList("player1", "player2"));
+  @Override
+  public void onExecute(DelegateExecutionHandler delegateExecution) throws Exception {
+    String location = delegateExecution.getVariable("locationId");
+
+    List<String> collection = locationService.getPlayersByLocation(location);
+    delegateExecution.setVariable("playerCollection", new ArrayList<>(collection));
   }
 }

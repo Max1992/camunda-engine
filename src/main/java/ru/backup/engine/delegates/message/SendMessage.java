@@ -1,24 +1,21 @@
 package ru.backup.engine.delegates.message;
 
-import org.camunda.bpm.engine.delegate.DelegateExecution;
-import org.camunda.bpm.engine.delegate.JavaDelegate;
-import org.camunda.bpm.model.bpmn.instance.EndEvent;
 import org.camunda.bpm.model.bpmn.instance.MessageEventDefinition;
+import org.camunda.bpm.model.bpmn.instance.ThrowEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-import ru.backup.engine.DebugUtils;
+import ru.backup.engine.delegates.DelegateExecutionHandler;
+import ru.backup.engine.delegates.JavaDelegateHandler;
 
 @Component("sendMessage")
-public class SendMessage implements JavaDelegate {
+public class SendMessage extends JavaDelegateHandler {
 
   private static final Logger log = LoggerFactory.getLogger(SendMessage.class);
 
   @Override
-  public void execute(DelegateExecution delegateExecution) throws Exception {
-    DebugUtils.print(log, delegateExecution);
-
-    EndEvent endEvent = (EndEvent) delegateExecution.getBpmnModelElementInstance();
+  public void onExecute(DelegateExecutionHandler delegateExecution) throws Exception {
+    ThrowEvent endEvent = (ThrowEvent) delegateExecution.getBpmnModelElementInstance();
 
     MessageEventDefinition messageDefinition = endEvent.getChildElementsByType(MessageEventDefinition.class)
         .stream()
@@ -27,20 +24,21 @@ public class SendMessage implements JavaDelegate {
 
     String messageName = messageDefinition.getMessage().getName();
     String businessKey = delegateExecution.getBusinessKey();
+    String correlation = delegateExecution.getVariable("correlation");
 
-    long receiversCount = delegateExecution.getProcessEngineServices().getRuntimeService()
-        .createExecutionQuery()
-        .messageEventSubscriptionName(messageName)
-        .processInstanceBusinessKey(businessKey)
+    var runtimeService = delegateExecution.getProcessEngineServices().getRuntimeService();
+
+    long count = runtimeService.createEventSubscriptionQuery()
+        .eventType("message")
+        .eventName(messageName)
         .count();
+    log.info("Активных подписок на {}: {}", messageName, count);
 
-    if (receiversCount > 0) {
-      delegateExecution.getProcessEngineServices().getRuntimeService()
-          .createMessageCorrelation(messageName)
-          .processInstanceBusinessKey(businessKey)
-          .correlate();
-    } else {
-      log.info("Получатель для сообщения {} еще не готов.", messageName);
-    }
+    runtimeService
+        .createMessageCorrelation(messageName)
+        .processInstanceBusinessKey(businessKey)
+        .processInstanceVariableEquals("correlation", correlation)
+        .setVariables(delegateExecution.getVariables())
+        .correlate();
   }
 }

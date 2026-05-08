@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" xmlns:color="http://www.omg.org/spec/BPMN/non-normative/color/1.0" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0v61edk" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.37.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.23.0">
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" xmlns:color="http://www.omg.org/spec/BPMN/non-normative/color/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0v61edk" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.37.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.23.0">
   <bpmn:collaboration id="Collaboration_00ykp04">
     <bpmn:participant id="Participant_0os5ch3" name="Новое начало!" processRef="Process_1hxz81f" />
     <bpmn:participant id="Participant_0sx169r" name="Расстановка новых врат и монстров" processRef="Process_0cndfob" />
-    <bpmn:participant id="Participant_08p35fy" name="открываются новые врата" processRef="Process_16gp1c4" />
-    <bpmn:participant id="Participant_0t41ff8" name="Новый жетон на треке безысходности" processRef="Process_1rynbb4" />
-    <bpmn:participant id="Participant_006b48y" name="Установка врат в локации" processRef="Process_12ktpzp" />
-    <bpmn:participant id="Participant_1s4sgm2" name="Вторжение монстра (одного или двух)" processRef="Process_0fzdgxc" />
-    <bpmn:participant id="Participant_008yviy" name="задержание игрока(в) в ином мире (врата)" processRef="Process_0j0tahy" />
+    <bpmn:participant id="Participant_08p35fy" name="открываются новые врата (40N)" processRef="Process_16gp1c4" />
+    <bpmn:participant id="Participant_0t41ff8" name="Новый жетон на треке безысходности (30N)" processRef="Process_1rynbb4" />
+    <bpmn:participant id="Participant_006b48y" name="Установка врат в локации (10N)" processRef="Process_12ktpzp" />
+    <bpmn:participant id="Participant_1s4sgm2" name="Вторжение монстра (одного или двух) (60N)" processRef="Process_0fzdgxc" />
+    <bpmn:participant id="Participant_008yviy" name="задержание игрока(в) в ином мире (врата) (20N)" processRef="Process_0j0tahy" />
     <bpmn:participant id="Participant_1czv67r" name="повышение уровня ужаса" processRef="Process_0votm2n" />
     <bpmn:participant id="Participant_07se6nd" name="Если в локации есть Знак Древних" processRef="Process_0q5jk3z" />
     <bpmn:participant id="Participant_1tthklb" name="Если в локации есть открытые врата (наплыв монстров)" processRef="Process_1ymjyq9" />
@@ -68,7 +68,6 @@
     <bpmn:association id="Association_1jqnyn0" associationDirection="None" sourceRef="Activity_1yrzupk" targetRef="TextAnnotation_1rfsi5m" />
     <bpmn:association id="Association_0k1yrvc" associationDirection="None" sourceRef="Activity_0318qor" targetRef="TextAnnotation_0kvlo96" />
     <bpmn:association id="Association_1u8slvo" associationDirection="None" sourceRef="Activity_01mlk55" targetRef="TextAnnotation_1r7r2xp" />
-    <bpmn:association id="Association_1ogvka0" associationDirection="None" sourceRef="Event_1umd90c" targetRef="TextAnnotation_076cbca" />
     <bpmn:association id="Association_1qt3b8u" associationDirection="None" sourceRef="Event_1d3len1" targetRef="TextAnnotation_19vpm8q" />
     <bpmn:association id="Association_0nyvda3" associationDirection="None" sourceRef="Activity_1knf1da" targetRef="TextAnnotation_1bjh8l7" />
     <bpmn:association id="Association_0rxky2b" associationDirection="None" sourceRef="Event_0ps9jpb" targetRef="TextAnnotation_16dpqta" />
@@ -182,103 +181,184 @@
     <bpmn:sequenceFlow id="Flow_1xc72wr" sourceRef="Event_0uxew5s" targetRef="Activity_0to08pm" />
     <bpmn:sequenceFlow id="Flow_0z0k5wq" sourceRef="Event_0ps9jpb" targetRef="Event_026hgbq" />
   </bpmn:process>
-  <bpmn:process id="Process_16gp1c4" isExecutable="false" camunda:historyTimeToLive="180" camunda:isStartableInTasklist="false">
+  <bpmn:process id="Process_16gp1c4" isExecutable="true" camunda:historyTimeToLive="180" camunda:isStartableInTasklist="false">
     <bpmn:startEvent id="Event_1eff7lb">
       <bpmn:outgoing>Flow_1hilbti</bpmn:outgoing>
       <bpmn:messageEventDefinition id="MessageEventDefinition_0r3wpwr" messageRef="Message_0k7pkl4" />
     </bpmn:startEvent>
-    <bpmn:endEvent id="Event_1mnkvt9">
-      <bpmn:incoming>Flow_0fppjjx</bpmn:incoming>
-    </bpmn:endEvent>
     <bpmn:subProcess id="Activity_0ht93pg">
       <bpmn:incoming>Flow_1hilbti</bpmn:incoming>
       <bpmn:startEvent id="Event_0u1um9r">
         <bpmn:outgoing>Flow_1nofzww</bpmn:outgoing>
       </bpmn:startEvent>
-      <bpmn:intermediateThrowEvent id="Event_1kwrvub" name="Новый жетон на треке безысходности">
+      <bpmn:intermediateThrowEvent id="Event_1kwrvub" name="(Сообщение) Новый жетон на треке безысходности">
+        <bpmn:extensionElements>
+          <camunda:inputOutput>
+            <camunda:inputParameter name="tokenCount">1</camunda:inputParameter>
+            <camunda:inputParameter name="correlation">${correlation}</camunda:inputParameter>
+          </camunda:inputOutput>
+        </bpmn:extensionElements>
         <bpmn:incoming>Flow_1nofzww</bpmn:incoming>
         <bpmn:outgoing>Flow_0bwmpak</bpmn:outgoing>
-        <bpmn:messageEventDefinition id="MessageEventDefinition_1rsblx0" />
+        <bpmn:messageEventDefinition id="MessageEventDefinition_1rsblx0" messageRef="Message_3b28q9o" camunda:delegateExpression="${sendStartMessage}" />
       </bpmn:intermediateThrowEvent>
       <bpmn:sequenceFlow id="Flow_1nofzww" sourceRef="Event_0u1um9r" targetRef="Event_1kwrvub" />
-      <bpmn:intermediateCatchEvent id="Event_0ov654x">
+      <bpmn:intermediateCatchEvent id="Event_0ov654x" camunda:asyncBefore="true">
+        <bpmn:extensionElements>
+          <camunda:inputOutput>
+            <camunda:inputParameter name="correlation">${correlation}</camunda:inputParameter>
+          </camunda:inputOutput>
+          <camunda:failedJobRetryTimeCycle>R5/PT10S</camunda:failedJobRetryTimeCycle>
+        </bpmn:extensionElements>
         <bpmn:incoming>Flow_0bwmpak</bpmn:incoming>
         <bpmn:outgoing>Flow_1ugpqdn</bpmn:outgoing>
-        <bpmn:messageEventDefinition id="MessageEventDefinition_13bqrd7" />
+        <bpmn:messageEventDefinition id="MessageEventDefinition_13bqrd7" messageRef="Message_1rd9de0" />
       </bpmn:intermediateCatchEvent>
       <bpmn:sequenceFlow id="Flow_0bwmpak" sourceRef="Event_1kwrvub" targetRef="Event_0ov654x" />
-      <bpmn:intermediateThrowEvent id="Event_0km6eaj" name="Установка врат">
+      <bpmn:intermediateThrowEvent id="Event_0km6eaj" name="(Сообщение) Установить врата">
+        <bpmn:extensionElements>
+          <camunda:inputOutput>
+            <camunda:inputParameter name="correlation">${correlation}</camunda:inputParameter>
+            <camunda:inputParameter name="locationId">${locationId}</camunda:inputParameter>
+            <camunda:inputParameter name="gateId">${gateId}</camunda:inputParameter>
+          </camunda:inputOutput>
+        </bpmn:extensionElements>
         <bpmn:incoming>Flow_0znitz2</bpmn:incoming>
         <bpmn:outgoing>Flow_0a1ks79</bpmn:outgoing>
-        <bpmn:messageEventDefinition id="MessageEventDefinition_02z7vqz" />
+        <bpmn:messageEventDefinition id="MessageEventDefinition_02z7vqz" messageRef="Message_29tvm40" camunda:delegateExpression="${sendStartMessage}" />
       </bpmn:intermediateThrowEvent>
       <bpmn:sequenceFlow id="Flow_1ugpqdn" sourceRef="Event_0ov654x" targetRef="Activity_1q7t0ww" />
       <bpmn:sequenceFlow id="Flow_0a1ks79" sourceRef="Event_0km6eaj" targetRef="Event_00dk9i4" />
       <bpmn:sequenceFlow id="Flow_05cl32e" sourceRef="Event_00dk9i4" targetRef="Activity_0993n32" />
-      <bpmn:intermediateCatchEvent id="Event_00dk9i4">
+      <bpmn:intermediateCatchEvent id="Event_00dk9i4" camunda:asyncAfter="true">
+        <bpmn:extensionElements>
+          <camunda:inputOutput>
+            <camunda:inputParameter name="correlation">${correlation}</camunda:inputParameter>
+          </camunda:inputOutput>
+        </bpmn:extensionElements>
         <bpmn:incoming>Flow_0a1ks79</bpmn:incoming>
         <bpmn:outgoing>Flow_05cl32e</bpmn:outgoing>
-        <bpmn:messageEventDefinition id="MessageEventDefinition_1vmcc8s" />
+        <bpmn:messageEventDefinition id="MessageEventDefinition_1vmcc8s" messageRef="Message_1rd9de0" />
       </bpmn:intermediateCatchEvent>
       <bpmn:sequenceFlow id="Flow_0znitz2" sourceRef="Activity_1q7t0ww" targetRef="Event_0km6eaj" />
-      <bpmn:serviceTask id="Activity_1q7t0ww" name="жетон врат из стопки">
+      <bpmn:serviceTask id="Activity_1q7t0ww" name="Получить жетон врат из стопки" camunda:delegateExpression="${drawGateTokenFromPool}">
+        <bpmn:extensionElements>
+          <camunda:inputOutput>
+            <camunda:outputParameter name="gateId">${gateId}</camunda:outputParameter>
+          </camunda:inputOutput>
+        </bpmn:extensionElements>
         <bpmn:incoming>Flow_1ugpqdn</bpmn:incoming>
         <bpmn:outgoing>Flow_0znitz2</bpmn:outgoing>
       </bpmn:serviceTask>
       <bpmn:sequenceFlow id="Flow_0huviid" sourceRef="Activity_0993n32" targetRef="Activity_1knf1da" />
-      <bpmn:serviceTask id="Activity_0993n32" name="жетон монстра(в) из пула (два жетона если игроков &#62; 2)">
+      <bpmn:serviceTask id="Activity_0993n32" name="Получить жетон монстра(в) из пула (два жетона если игроков &#62; 2)" camunda:delegateExpression="${drawMonsterTokensFromPool}">
+        <bpmn:extensionElements>
+          <camunda:inputOutput>
+            <camunda:inputParameter name="locationId">${locationId}</camunda:inputParameter>
+          </camunda:inputOutput>
+        </bpmn:extensionElements>
         <bpmn:incoming>Flow_05cl32e</bpmn:incoming>
         <bpmn:outgoing>Flow_0huviid</bpmn:outgoing>
       </bpmn:serviceTask>
       <bpmn:sequenceFlow id="Flow_13l2ubz" sourceRef="Activity_1knf1da" targetRef="Event_0i99maa" />
-      <bpmn:serviceTask id="Activity_1knf1da" name="Вторжение монстра">
+      <bpmn:serviceTask id="Activity_1knf1da" name="Вторжение монстра" camunda:delegateExpression="${startMonsterInvasion}">
+        <bpmn:extensionElements>
+          <camunda:inputOutput>
+            <camunda:inputParameter name="messageName">msg601</camunda:inputParameter>
+            <camunda:inputParameter name="locationId">${locationId}</camunda:inputParameter>
+          </camunda:inputOutput>
+        </bpmn:extensionElements>
         <bpmn:incoming>Flow_0huviid</bpmn:incoming>
         <bpmn:outgoing>Flow_13l2ubz</bpmn:outgoing>
-        <bpmn:multiInstanceLoopCharacteristics isSequential="true" />
+        <bpmn:multiInstanceLoopCharacteristics isSequential="true" camunda:collection="monsterCollection" camunda:elementVariable="monsterId" />
       </bpmn:serviceTask>
-      <bpmn:endEvent id="Event_0i99maa">
+      <bpmn:endEvent id="Event_0i99maa" name="(Сообщение) Врата открыты" camunda:asyncBefore="true">
+        <bpmn:extensionElements>
+          <camunda:inputOutput>
+            <camunda:inputParameter name="correlation">${correlation}</camunda:inputParameter>
+          </camunda:inputOutput>
+          <camunda:failedJobRetryTimeCycle>R5/PT10S</camunda:failedJobRetryTimeCycle>
+        </bpmn:extensionElements>
         <bpmn:incoming>Flow_13l2ubz</bpmn:incoming>
-        <bpmn:messageEventDefinition id="MessageEventDefinition_0js71q1" />
+        <bpmn:messageEventDefinition id="MessageEventDefinition_0js71q1" messageRef="Message_1rd9de0" camunda:delegateExpression="${sendMessage}" />
       </bpmn:endEvent>
     </bpmn:subProcess>
+    <bpmn:sequenceFlow id="Flow_1hilbti" sourceRef="Event_1eff7lb" targetRef="Activity_0ht93pg" />
+    <bpmn:sequenceFlow id="Flow_0fppjjx" sourceRef="Event_1umd90c" targetRef="Gateway_1iqz3ld" />
     <bpmn:boundaryEvent id="Event_1umd90c" attachedToRef="Activity_0ht93pg">
       <bpmn:outgoing>Flow_0fppjjx</bpmn:outgoing>
-      <bpmn:messageEventDefinition id="MessageEventDefinition_1rxdry5" />
+      <bpmn:errorEventDefinition id="ErrorEventDefinition_066dptz" errorRef="Error_0ctuv9j" camunda:errorCodeVariable="errorMsg" />
     </bpmn:boundaryEvent>
-    <bpmn:sequenceFlow id="Flow_1hilbti" sourceRef="Event_1eff7lb" targetRef="Activity_0ht93pg" />
-    <bpmn:sequenceFlow id="Flow_0fppjjx" sourceRef="Event_1umd90c" targetRef="Event_1mnkvt9" />
+    <bpmn:boundaryEvent id="Event_0mq7zip" attachedToRef="Activity_0ht93pg">
+      <bpmn:outgoing>Flow_0hc9cwd</bpmn:outgoing>
+      <bpmn:errorEventDefinition id="ErrorEventDefinition_0vkihbz" errorRef="Error_1yy00xq" camunda:errorCodeVariable="errorMsg" />
+    </bpmn:boundaryEvent>
+    <bpmn:endEvent id="Event_1mnkvt9">
+      <bpmn:incoming>Flow_00q5271</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:exclusiveGateway id="Gateway_1iqz3ld">
+      <bpmn:incoming>Flow_0fppjjx</bpmn:incoming>
+      <bpmn:incoming>Flow_0hc9cwd</bpmn:incoming>
+      <bpmn:outgoing>Flow_00q5271</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_00q5271" sourceRef="Gateway_1iqz3ld" targetRef="Event_1mnkvt9" />
+    <bpmn:sequenceFlow id="Flow_0hc9cwd" sourceRef="Event_0mq7zip" targetRef="Gateway_1iqz3ld" />
+    <bpmn:association id="Association_1ogvka0" associationDirection="None" sourceRef="Event_1umd90c" targetRef="TextAnnotation_076cbca" />
   </bpmn:process>
-  <bpmn:process id="Process_1rynbb4" isExecutable="false" camunda:historyTimeToLive="180" camunda:isStartableInTasklist="false">
+  <bpmn:process id="Process_1rynbb4" isExecutable="true" camunda:historyTimeToLive="180" camunda:isStartableInTasklist="false">
+    <bpmn:extensionElements />
     <bpmn:exclusiveGateway id="Gateway_1wbq4bu">
       <bpmn:incoming>Flow_0svxfrb</bpmn:incoming>
       <bpmn:outgoing>Flow_00bgl4o</bpmn:outgoing>
       <bpmn:outgoing>Flow_0qkpill</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:endEvent id="Event_1aooy9j">
+    <bpmn:endEvent id="Event_1aooy9j" name="(Сообщение) Лимит трека не достигнут" camunda:asyncBefore="true">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="correlation">${correlation}</camunda:inputParameter>
+        </camunda:inputOutput>
+        <camunda:failedJobRetryTimeCycle>R5/PT10S</camunda:failedJobRetryTimeCycle>
+      </bpmn:extensionElements>
       <bpmn:incoming>Flow_00bgl4o</bpmn:incoming>
-      <bpmn:messageEventDefinition id="MessageEventDefinition_0ro4jzf" />
+      <bpmn:messageEventDefinition id="MessageEventDefinition_0ro4jzf" messageRef="Message_1rd9de0" camunda:delegateExpression="${sendMessage}" />
     </bpmn:endEvent>
-    <bpmn:endEvent id="Event_1hbr36o">
-      <bpmn:incoming>Flow_0qkpill</bpmn:incoming>
-      <bpmn:messageEventDefinition id="MessageEventDefinition_1opihcc" />
-    </bpmn:endEvent>
-    <bpmn:intermediateCatchEvent id="Event_09pj977">
-      <bpmn:outgoing>Flow_1q8drxq</bpmn:outgoing>
-      <bpmn:messageEventDefinition id="MessageEventDefinition_1yf5w95" />
-    </bpmn:intermediateCatchEvent>
-    <bpmn:serviceTask id="Activity_1tfxzmc" name="Новый жетон на треке безысходности">
+    <bpmn:serviceTask id="Activity_1tfxzmc" name="Добавить жетон (ы) на треке безысходности" camunda:delegateExpression="${addDoomTrackToken}">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="tokenCount">${tokenCount}</camunda:inputParameter>
+          <camunda:outputParameter name="currentTokenCount">${currentTokenCount}</camunda:outputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
       <bpmn:incoming>Flow_1q8drxq</bpmn:incoming>
       <bpmn:outgoing>Flow_087j4p3</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:serviceTask id="Activity_01mlk55" name="проверка лимита трека">
+    <bpmn:serviceTask id="Activity_01mlk55" name="Проверка лимита трека" camunda:delegateExpression="${checkTrackLimit}">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="currentTokenCount">${currentTokenCount}</camunda:inputParameter>
+          <camunda:outputParameter name="tokenLimitReached">${tokenLimitReached}</camunda:outputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
       <bpmn:incoming>Flow_087j4p3</bpmn:incoming>
       <bpmn:outgoing>Flow_0svxfrb</bpmn:outgoing>
     </bpmn:serviceTask>
     <bpmn:sequenceFlow id="Flow_0svxfrb" sourceRef="Activity_01mlk55" targetRef="Gateway_1wbq4bu" />
-    <bpmn:sequenceFlow id="Flow_00bgl4o" sourceRef="Gateway_1wbq4bu" targetRef="Event_1aooy9j" />
-    <bpmn:sequenceFlow id="Flow_0qkpill" name="последнее свободное деление закрыто" sourceRef="Gateway_1wbq4bu" targetRef="Event_1hbr36o" />
+    <bpmn:sequenceFlow id="Flow_00bgl4o" name="" sourceRef="Gateway_1wbq4bu" targetRef="Event_1aooy9j">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{!tokenLimitReached}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_0qkpill" name="последнее свободное деление закрыто" sourceRef="Gateway_1wbq4bu" targetRef="Event_1hbr36o">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{tokenLimitReached}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_1q8drxq" sourceRef="Event_09pj977" targetRef="Activity_1tfxzmc" />
     <bpmn:sequenceFlow id="Flow_087j4p3" sourceRef="Activity_1tfxzmc" targetRef="Activity_01mlk55" />
+    <bpmn:startEvent id="Event_09pj977">
+      <bpmn:outgoing>Flow_1q8drxq</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_1h4dys4" messageRef="Message_3b28q9o" />
+    </bpmn:startEvent>
+    <bpmn:endEvent id="Event_1hbr36o">
+      <bpmn:incoming>Flow_0qkpill</bpmn:incoming>
+      <bpmn:errorEventDefinition id="ErrorEventDefinition_1eym5qz" errorRef="Error_0ctuv9j" />
+    </bpmn:endEvent>
   </bpmn:process>
   <bpmn:process id="Process_12ktpzp" isExecutable="true" camunda:historyTimeToLive="180" camunda:isStartableInTasklist="false">
     <bpmn:startEvent id="Event_0fmcq5g">
@@ -286,6 +366,11 @@
       <bpmn:messageEventDefinition id="MessageEventDefinition_17ikpe7" messageRef="Message_29tvm40" />
     </bpmn:startEvent>
     <bpmn:subProcess id="Activity_1qs87jw">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="correlation">${correlation}</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
       <bpmn:incoming>Flow_0dso5bj</bpmn:incoming>
       <bpmn:outgoing>Flow_0yal7dr</bpmn:outgoing>
       <bpmn:startEvent id="Event_1bjp9ys">
@@ -294,16 +379,16 @@
       <bpmn:serviceTask id="Activity_15s90v4" name="Сбросить все улики из локации" camunda:delegateExpression="${clearLocationClues}">
         <bpmn:extensionElements>
           <camunda:inputOutput>
-            <camunda:inputParameter name="location">${location}</camunda:inputParameter>
+            <camunda:inputParameter name="locationId">${locationId}</camunda:inputParameter>
           </camunda:inputOutput>
         </bpmn:extensionElements>
         <bpmn:incoming>Flow_025lsbw</bpmn:incoming>
         <bpmn:outgoing>Flow_0ogpt7t</bpmn:outgoing>
       </bpmn:serviceTask>
-      <bpmn:serviceTask id="Activity_1rupret" name="Получить список игроков находящихся в локации" camunda:delegateExpression="${getPlayersByLocation}">
+      <bpmn:serviceTask id="Activity_1rupret" name="Получить список сыщиков находящихся в локации" camunda:delegateExpression="${getPlayersByLocation}">
         <bpmn:extensionElements>
           <camunda:inputOutput>
-            <camunda:inputParameter name="location">${location}</camunda:inputParameter>
+            <camunda:inputParameter name="locationId">${locationId}</camunda:inputParameter>
           </camunda:inputOutput>
         </bpmn:extensionElements>
         <bpmn:incoming>Flow_0ogpt7t</bpmn:incoming>
@@ -311,17 +396,22 @@
       </bpmn:serviceTask>
       <bpmn:sequenceFlow id="Flow_0ogpt7t" sourceRef="Activity_15s90v4" targetRef="Activity_1rupret" />
       <bpmn:sequenceFlow id="Flow_025lsbw" sourceRef="Event_1bjp9ys" targetRef="Activity_15s90v4" />
-      <bpmn:serviceTask id="Activity_0gimt2b" name="Задержание игрока(в) в ином мире" camunda:delegateExpression="${detainPlayersInOtherWorld}">
-        <bpmn:extensionElements />
+      <bpmn:serviceTask id="Activity_0gimt2b" name="Задержание сыщика(ов) в ином мире" camunda:delegateExpression="${startDetainPlayersInOtherWorld}">
+        <bpmn:extensionElements>
+          <camunda:inputOutput>
+            <camunda:inputParameter name="messageName">msg201</camunda:inputParameter>
+          </camunda:inputOutput>
+        </bpmn:extensionElements>
         <bpmn:incoming>Flow_0tn85n1</bpmn:incoming>
         <bpmn:outgoing>Flow_1hhbmz5</bpmn:outgoing>
-        <bpmn:multiInstanceLoopCharacteristics isSequential="true" camunda:asyncBefore="true" camunda:exclusive="false" camunda:collection="playerCollection" camunda:elementVariable="player" />
+        <bpmn:multiInstanceLoopCharacteristics isSequential="true" camunda:collection="playerCollection" camunda:elementVariable="playerId" />
       </bpmn:serviceTask>
       <bpmn:sequenceFlow id="Flow_0tn85n1" sourceRef="Activity_1rupret" targetRef="Activity_0gimt2b" />
       <bpmn:serviceTask id="Activity_1lpfhyg" name="Установить в локации врата" camunda:delegateExpression="${setGateToLocation}">
         <bpmn:extensionElements>
           <camunda:inputOutput>
-            <camunda:inputParameter name="gate">${gate}</camunda:inputParameter>
+            <camunda:inputParameter name="gateId">${gateId}</camunda:inputParameter>
+            <camunda:inputParameter name="locationId">${locationId}</camunda:inputParameter>
           </camunda:inputOutput>
         </bpmn:extensionElements>
         <bpmn:incoming>Flow_1hhbmz5</bpmn:incoming>
@@ -338,12 +428,18 @@
       <bpmn:errorEventDefinition id="ErrorEventDefinition_0srt6w8" errorRef="Error_1yy00xq" camunda:errorCodeVariable="errorMsg" />
     </bpmn:boundaryEvent>
     <bpmn:sequenceFlow id="Flow_0yal7dr" sourceRef="Activity_1qs87jw" targetRef="Event_1lhefxv" />
-    <bpmn:endEvent id="Event_1lhefxv" name="Отправить сообщение">
+    <bpmn:endEvent id="Event_1lhefxv" name="(Сообщение) Врата установлены" camunda:asyncBefore="true">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="correlation">${correlation}</camunda:inputParameter>
+        </camunda:inputOutput>
+        <camunda:failedJobRetryTimeCycle>R5/PT10S</camunda:failedJobRetryTimeCycle>
+      </bpmn:extensionElements>
       <bpmn:incoming>Flow_0yal7dr</bpmn:incoming>
       <bpmn:messageEventDefinition id="MessageEventDefinition_0ihbetk" messageRef="Message_1rd9de0" camunda:delegateExpression="${sendMessage}" />
     </bpmn:endEvent>
   </bpmn:process>
-  <bpmn:process id="Process_0fzdgxc" isExecutable="false" camunda:isStartableInTasklist="false">
+  <bpmn:process id="Process_0fzdgxc" isExecutable="false" camunda:historyTimeToLive="180" camunda:isStartableInTasklist="false">
     <bpmn:intermediateCatchEvent id="Event_0iuw2xn">
       <bpmn:outgoing>Flow_1rtcziu</bpmn:outgoing>
       <bpmn:messageEventDefinition id="MessageEventDefinition_10kk1i3" />
@@ -425,7 +521,7 @@
     <bpmn:serviceTask id="Activity_11cy87z" name="Задержать сыщика в ином мире" camunda:delegateExpression="${delayPlayersInOtherWorld}">
       <bpmn:extensionElements>
         <camunda:inputOutput>
-          <camunda:inputParameter name="player">${player}</camunda:inputParameter>
+          <camunda:inputParameter name="playerId">${playerId}</camunda:inputParameter>
         </camunda:inputOutput>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_193yq3o</bpmn:incoming>
@@ -491,11 +587,14 @@
     <bpmn:sequenceFlow id="Flow_1m2pqci" sourceRef="Activity_0f02gd4" targetRef="Event_1cg26bp" />
   </bpmn:process>
   <bpmn:message id="Message_2r18507" name="msg550" />
-  <bpmn:message id="Message_0k7pkl4" name="msgTemp" />
+  <bpmn:message id="Message_0k7pkl4" name="msg401" />
   <bpmn:message id="Message_29tvm40" name="msg101" />
   <bpmn:message id="Message_1rd9de0" name="msg102" />
   <bpmn:message id="Message_22v07uv" name="msg201" />
-  <bpmn:error id="Error_1yy00xq" name="Error_3nts5hk" errorCode="error500" camunda:errorMessage="" />
+  <bpmn:error id="Error_1yy00xq" name="error500" errorCode="error500" camunda:errorMessage="" />
+  <bpmn:message id="Message_3b28q9o" name="msg301" />
+  <bpmn:message id="Message_20380fr" name="msg501" />
+  <bpmn:error id="Error_0ctuv9j" name="error900" errorCode="error900" camunda:errorMessage="Пробуждение древнего" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_00ykp04">
       <bpmndi:BPMNShape id="Participant_0os5ch3_di" bpmnElement="Participant_0os5ch3" isHorizontal="true">
@@ -665,19 +764,16 @@
       <bpmndi:BPMNShape id="Event_1kzjzr0_di" bpmnElement="Event_1eff7lb">
         <dc:Bounds x="662" y="1442" width="36" height="36" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_1mnkvt9_di" bpmnElement="Event_1mnkvt9">
-        <dc:Bounds x="842" y="1582" width="36" height="36" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0ht93pg_di" bpmnElement="Activity_0ht93pg" isExpanded="true">
-        <dc:Bounds x="750" y="1350" width="960" height="200" />
+        <dc:Bounds x="720" y="1350" width="990" height="200" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_0u1um9r_di" bpmnElement="Event_0u1um9r">
-        <dc:Bounds x="790" y="1432" width="36" height="36" />
+        <dc:Bounds x="762" y="1432" width="36" height="36" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_0jkb9ks_di" bpmnElement="Event_1kwrvub">
-        <dc:Bounds x="882" y="1432" width="36" height="36" />
+        <dc:Bounds x="842" y="1432" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="858" y="1382" width="83" height="40" />
+          <dc:Bounds x="818" y="1363" width="83" height="53" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_0j1tm9b_di" bpmnElement="Event_0ov654x">
@@ -686,7 +782,7 @@
       <bpmndi:BPMNShape id="Event_1olvxyu_di" bpmnElement="Event_0km6eaj">
         <dc:Bounds x="1172" y="1432" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1151" y="1395" width="78" height="14" />
+          <dc:Bounds x="1145" y="1376" width="89" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_1yowuqg_di" bpmnElement="Event_00dk9i4">
@@ -705,13 +801,16 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_1pp6bjh_di" bpmnElement="Event_0i99maa">
         <dc:Bounds x="1602" y="1432" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1582" y="1475" width="77" height="27" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_1nofzww_di" bpmnElement="Flow_1nofzww">
-        <di:waypoint x="826" y="1450" />
-        <di:waypoint x="882" y="1450" />
+        <di:waypoint x="798" y="1450" />
+        <di:waypoint x="842" y="1450" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0bwmpak_di" bpmnElement="Flow_0bwmpak">
-        <di:waypoint x="918" y="1450" />
+        <di:waypoint x="878" y="1450" />
         <di:waypoint x="952" y="1450" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1ugpqdn_di" bpmnElement="Flow_1ugpqdn">
@@ -738,17 +837,39 @@
         <di:waypoint x="1550" y="1450" />
         <di:waypoint x="1602" y="1450" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="Event_0bse1ub_di" bpmnElement="Event_1umd90c">
+      <bpmndi:BPMNShape id="Event_1mnkvt9_di" bpmnElement="Event_1mnkvt9">
+        <dc:Bounds x="1092" y="1582" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1iqz3ld_di" bpmnElement="Gateway_1iqz3ld" isMarkerVisible="true">
+        <dc:Bounds x="985" y="1575" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1305qn3_di" bpmnElement="Event_0mq7zip">
+        <dc:Bounds x="892" y="1532" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1abod6z_di" bpmnElement="Event_1umd90c">
         <dc:Bounds x="772" y="1532" width="36" height="36" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_1hilbti_di" bpmnElement="Flow_1hilbti">
         <di:waypoint x="698" y="1460" />
-        <di:waypoint x="750" y="1460" />
+        <di:waypoint x="720" y="1460" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0fppjjx_di" bpmnElement="Flow_0fppjjx">
         <di:waypoint x="790" y="1568" />
         <di:waypoint x="790" y="1600" />
-        <di:waypoint x="842" y="1600" />
+        <di:waypoint x="985" y="1600" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_00q5271_di" bpmnElement="Flow_00q5271">
+        <di:waypoint x="1035" y="1600" />
+        <di:waypoint x="1092" y="1600" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0hc9cwd_di" bpmnElement="Flow_0hc9cwd">
+        <di:waypoint x="910" y="1568" />
+        <di:waypoint x="910" y="1600" />
+        <di:waypoint x="985" y="1600" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_1ogvka0_di" bpmnElement="Association_1ogvka0">
+        <di:waypoint x="774" y="1559" />
+        <di:waypoint x="737" y="1580" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Participant_0t41ff8_di" bpmnElement="Participant_0t41ff8" isHorizontal="true">
         <dc:Bounds x="410" y="1740" width="705" height="250" />
@@ -759,19 +880,23 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_0c1q3rt_di" bpmnElement="Event_1aooy9j">
         <dc:Bounds x="952" y="1782" width="36" height="36" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_131je7o_di" bpmnElement="Event_1hbr36o">
-        <dc:Bounds x="952" y="1902" width="36" height="36" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_0pxjrrp_di" bpmnElement="Event_09pj977">
-        <dc:Bounds x="472" y="1842" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="932" y="1825" width="78" height="40" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1cf34h8_di" bpmnElement="Activity_1tfxzmc">
         <dc:Bounds x="550" y="1820" width="100" height="80" />
+        <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0uunql5_di" bpmnElement="Activity_01mlk55">
         <dc:Bounds x="680" y="1820" width="100" height="80" />
         <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1jbmisd_di" bpmnElement="Event_09pj977">
+        <dc:Bounds x="472" y="1842" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_16pg0om_di" bpmnElement="Event_1hbr36o">
+        <dc:Bounds x="952" y="1902" width="36" height="36" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_0svxfrb_di" bpmnElement="Flow_0svxfrb">
         <di:waypoint x="780" y="1860" />
@@ -781,6 +906,9 @@
         <di:waypoint x="830" y="1835" />
         <di:waypoint x="830" y="1800" />
         <di:waypoint x="952" y="1800" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="851" y="1807" width="78" height="27" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0qkpill_di" bpmnElement="Flow_0qkpill">
         <di:waypoint x="830" y="1885" />
@@ -849,7 +977,7 @@
       <bpmndi:BPMNShape id="Event_0pt46it_di" bpmnElement="Event_1lhefxv">
         <dc:Bounds x="952" y="2202" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="941" y="2245" width="58" height="27" />
+          <dc:Bounds x="938" y="2245" width="68" height="40" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_1c2lu2g_di" bpmnElement="Event_1dwcsll">
@@ -1085,7 +1213,7 @@
         <di:waypoint x="2442" y="950" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="TextAnnotation_0t8d0z4_di" bpmnElement="TextAnnotation_0t8d0z4" bioc:stroke="#831311" bioc:fill="#ffcdd2" color:background-color="#ffcdd2" color:border-color="#831311">
-        <dc:Bounds x="980" y="1844" width="100" height="41" />
+        <dc:Bounds x="1000" y="1899" width="100" height="41" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="TextAnnotation_0wz6vxm_di" bpmnElement="TextAnnotation_0wz6vxm">
@@ -1117,7 +1245,7 @@
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="TextAnnotation_1bjh8l7_di" bpmnElement="TextAnnotation_1bjh8l7">
-        <dc:Bounds x="1570" y="1490" width="100" height="53" />
+        <dc:Bounds x="1450" y="1350" width="100" height="53" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="TextAnnotation_16dpqta_di" bpmnElement="TextAnnotation_16dpqta">
@@ -1149,12 +1277,12 @@
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_00xjrnm_di" bpmnElement="Flow_00xjrnm">
-        <di:waypoint x="900" y="1468" />
-        <di:waypoint x="900" y="1680" />
+        <di:waypoint x="860" y="1468" />
+        <di:waypoint x="860" y="1680" />
         <di:waypoint x="490" y="1680" />
         <di:waypoint x="490" y="1842" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="572" y="1690" width="83" height="40" />
+          <dc:Bounds x="560" y="1690" width="83" height="40" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0q9l423_di" bpmnElement="Flow_0q9l423">
@@ -1259,8 +1387,8 @@
         <di:waypoint x="690" y="120" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Association_1e3m6uk_di" bpmnElement="Association_1e3m6uk">
-        <di:waypoint x="983" y="1907" />
-        <di:waypoint x="1004" y="1885" />
+        <di:waypoint x="988" y="1919" />
+        <di:waypoint x="1000" y="1918" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Association_0p66euq_di" bpmnElement="Association_0p66euq">
         <di:waypoint x="1536" y="2130" />
@@ -1278,17 +1406,13 @@
         <di:waypoint x="734" y="1820" />
         <di:waypoint x="737" y="1791" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Association_1ogvka0_di" bpmnElement="Association_1ogvka0">
-        <di:waypoint x="774" y="1559" />
-        <di:waypoint x="737" y="1580" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Association_1qt3b8u_di" bpmnElement="Association_1qt3b8u">
         <di:waypoint x="773" y="389" />
         <di:waypoint x="724" y="420" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Association_0nyvda3_di" bpmnElement="Association_0nyvda3">
-        <di:waypoint x="1550" y="1473" />
-        <di:waypoint x="1587" y="1490" />
+        <di:waypoint x="1500" y="1410" />
+        <di:waypoint x="1500" y="1403" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Association_0rxky2b_di" bpmnElement="Association_0rxky2b">
         <di:waypoint x="695" y="1085" />

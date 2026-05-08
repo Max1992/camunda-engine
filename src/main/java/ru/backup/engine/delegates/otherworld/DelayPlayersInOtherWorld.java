@@ -1,18 +1,13 @@
 package ru.backup.engine.delegates.otherworld;
 
-import org.camunda.bpm.engine.delegate.DelegateExecution;
-import org.camunda.bpm.engine.delegate.JavaDelegate;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-import ru.backup.engine.DebugUtils;
+import ru.backup.engine.delegates.DelegateExecutionHandler;
+import ru.backup.engine.delegates.JavaDelegateHandler;
 
 @Component("delayPlayersInOtherWorld")
-public class DelayPlayersInOtherWorld implements JavaDelegate {
-  private static final Logger log = LoggerFactory.getLogger(DelayPlayersInOtherWorld.class);
-
+public class DelayPlayersInOtherWorld extends JavaDelegateHandler {
   @Override
-  public void execute(DelegateExecution delegateExecution) throws Exception {
-    DebugUtils.print(log, delegateExecution);
+  public void onExecute(DelegateExecutionHandler delegateExecution) throws Exception {
+
   }
 }

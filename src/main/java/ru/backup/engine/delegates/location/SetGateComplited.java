@@ -1,19 +1,13 @@
 package ru.backup.engine.delegates.location;
 
-import org.camunda.bpm.engine.delegate.DelegateExecution;
-import org.camunda.bpm.engine.delegate.JavaDelegate;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-import ru.backup.engine.DebugUtils;
+import ru.backup.engine.delegates.DelegateExecutionHandler;
+import ru.backup.engine.delegates.JavaDelegateHandler;
 
 @Component("setGateComplited")
-public class SetGateComplited implements JavaDelegate {
-
-  private static final Logger log = LoggerFactory.getLogger(SetGateComplited.class);
+public class SetGateComplited extends JavaDelegateHandler {
 
   @Override
-  public void execute(DelegateExecution delegateExecution) throws Exception {
-    DebugUtils.print(log, delegateExecution);
+  public void onExecute(DelegateExecutionHandler delegateExecution) throws Exception {
   }
 }

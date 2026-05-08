@@ -9,6 +9,11 @@ camunda.bpm:
     create: All Tasks
   database:
     schema-update: true
+# процесс очистки переменных процессов
+# которые завершились более TTL время
+  generic-properties:
+    history-cleanup-batch-window-start-time: "00:00"
+    history-cleanup-batch-window-end-time: "06:00"
 
 spring:
   h2:
