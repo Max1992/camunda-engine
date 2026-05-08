@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1egp9i2" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.37.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.23.0">
+  <bpmn:collaboration id="Collaboration_1ptzoaf">
+    <bpmn:participant id="Participant_006b48y" name="Установка врат в локации" processRef="Process_1elhskk" />
+    <bpmn:participant id="Participant_008yviy" name="задержание игрока(в) в ином мире (врата)" processRef="Process_0j0tahys" />
+    <bpmn:messageFlow id="Flow_1jl0j0v" sourceRef="Activity_0gimt2b" targetRef="Event_0jcfi8s" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_1elhskk" isExecutable="true" camunda:historyTimeToLive="180">
+    <bpmn:extensionElements />
+    <bpmn:serviceTask id="Activity_15s90v4" name="сбрасывает все улики (локации)" camunda:delegateExpression="${locationDumpEvidence}">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="location">${location}</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1i1fc61</bpmn:incoming>
+      <bpmn:outgoing>Flow_0jibqcf</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="Activity_1rupret" name="поулчить список игроков в локации" camunda:delegateExpression="${locationGetPlayers}">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="location">${location}</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0jibqcf</bpmn:incoming>
+      <bpmn:outgoing>Flow_1jq86ac</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_1i1fc61" sourceRef="Event_0fmcq5g" targetRef="Activity_15s90v4" />
+    <bpmn:sequenceFlow id="Flow_0jibqcf" sourceRef="Activity_15s90v4" targetRef="Activity_1rupret" />
+    <bpmn:sequenceFlow id="Flow_1jq86ac" sourceRef="Activity_1rupret" targetRef="Activity_0gimt2b" />
+    <bpmn:sequenceFlow id="Flow_12iej3m" sourceRef="Activity_0gimt2b" targetRef="Activity_1lpfhyg" />
+    <bpmn:sequenceFlow id="Flow_1a9fffn" sourceRef="Activity_1lpfhyg" targetRef="Event_1lhefxv" />
+    <bpmn:startEvent id="Event_0fmcq5g" name="установить">
+      <bpmn:outgoing>Flow_1i1fc61</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_1ys0ga0" messageRef="Message_330p6uj" />
+    </bpmn:startEvent>
+    <bpmn:serviceTask id="Activity_0gimt2b" name="задержание игрока(в) в ином мире (врата)" camunda:delegateExpression="${locationArestPlayer}">
+      <bpmn:incoming>Flow_1jq86ac</bpmn:incoming>
+      <bpmn:outgoing>Flow_12iej3m</bpmn:outgoing>
+      <bpmn:multiInstanceLoopCharacteristics isSequential="true" camunda:asyncBefore="true" camunda:exclusive="false" camunda:collection="playerCollection" camunda:elementVariable="player" />
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="Activity_1lpfhyg" name="установить в локации врата (локация. врата)" camunda:delegateExpression="${locationSetGate}">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="gate">${gate}</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_12iej3m</bpmn:incoming>
+      <bpmn:outgoing>Flow_1a9fffn</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:endEvent id="Event_1lhefxv">
+      <bpmn:incoming>Flow_1a9fffn</bpmn:incoming>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_0ihbetk" messageRef="Message_2pn7ore" camunda:delegateExpression="${setGateComplited}">
+        <bpmn:extensionElements />
+      </bpmn:messageEventDefinition>
+    </bpmn:endEvent>
+  </bpmn:process>
+  <bpmn:process id="Process_0j0tahys" isExecutable="true" camunda:historyTimeToLive="180">
+    <bpmn:serviceTask id="Activity_11cy87z" name="установить факт задержания сыщика" camunda:delegateExpression="${otherworldArestingPlayer}">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="player">${player}</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_193yq3o</bpmn:incoming>
+      <bpmn:outgoing>Flow_0ds7v0v</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:endEvent id="Event_17fs0hi">
+      <bpmn:incoming>Flow_0ds7v0v</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_193yq3o" sourceRef="Event_0jcfi8s" targetRef="Activity_11cy87z" />
+    <bpmn:sequenceFlow id="Flow_0ds7v0v" sourceRef="Activity_11cy87z" targetRef="Event_17fs0hi" />
+    <bpmn:startEvent id="Event_0jcfi8s" name="задержание игрока" camunda:initiator="">
+      <bpmn:outgoing>Flow_193yq3o</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_0d0zf1y" messageRef="Message_046ifso" />
+    </bpmn:startEvent>
+  </bpmn:process>
+  <bpmn:message id="Message_330p6uj" name="msg_SetGate" />
+  <bpmn:message id="Message_046ifso" name="msg_ArrestPlayer" />
+  <bpmn:message id="Message_2pn7ore" name="msg_SetGateComplited" />
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1ptzoaf">
+      <bpmndi:BPMNShape id="Participant_006b48y_di" bpmnElement="Participant_006b48y" isHorizontal="true">
+        <dc:Bounds x="160" y="80" width="1080" height="250" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_06yfp6f_di" bpmnElement="Activity_15s90v4">
+        <dc:Bounds x="290" y="150" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0m6zs3a_di" bpmnElement="Activity_1rupret">
+        <dc:Bounds x="420" y="150" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_11qt55p_di" bpmnElement="Event_0fmcq5g">
+        <dc:Bounds x="210" y="172" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="200" y="215" width="57" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1ar64ij_di" bpmnElement="Activity_0gimt2b">
+        <dc:Bounds x="610" y="150" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_04vdczw_di" bpmnElement="Activity_1lpfhyg">
+        <dc:Bounds x="810" y="150" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0pt46it_di" bpmnElement="Event_1lhefxv">
+        <dc:Bounds x="992" y="172" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1i1fc61_di" bpmnElement="Flow_1i1fc61">
+        <di:waypoint x="246" y="190" />
+        <di:waypoint x="290" y="190" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0jibqcf_di" bpmnElement="Flow_0jibqcf">
+        <di:waypoint x="390" y="190" />
+        <di:waypoint x="420" y="190" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1jq86ac_di" bpmnElement="Flow_1jq86ac">
+        <di:waypoint x="520" y="190" />
+        <di:waypoint x="610" y="190" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_12iej3m_di" bpmnElement="Flow_12iej3m">
+        <di:waypoint x="710" y="190" />
+        <di:waypoint x="810" y="190" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1a9fffn_di" bpmnElement="Flow_1a9fffn">
+        <di:waypoint x="910" y="190" />
+        <di:waypoint x="992" y="190" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Participant_008yviy_di" bpmnElement="Participant_008yviy" isHorizontal="true">
+        <dc:Bounds x="385" y="397" width="430" height="250" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1jnw0d6_di" bpmnElement="Activity_11cy87z">
+        <dc:Bounds x="565" y="477" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_17fs0hi_di" bpmnElement="Event_17fs0hi">
+        <dc:Bounds x="727" y="499" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1dhygqo_di" bpmnElement="Event_0jcfi8s">
+        <dc:Bounds x="447" y="499" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="434" y="542" width="62" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_193yq3o_di" bpmnElement="Flow_193yq3o">
+        <di:waypoint x="483" y="517" />
+        <di:waypoint x="565" y="517" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0ds7v0v_di" bpmnElement="Flow_0ds7v0v">
+        <di:waypoint x="665" y="517" />
+        <di:waypoint x="727" y="517" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1jl0j0v_di" bpmnElement="Flow_1jl0j0v">
+        <di:waypoint x="660" y="230" />
+        <di:waypoint x="660" y="287" />
+        <di:waypoint x="465" y="287" />
+        <di:waypoint x="465" y="499" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
