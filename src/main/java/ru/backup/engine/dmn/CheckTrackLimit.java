@@ -1,4 +1,4 @@
-package ru.backup.engine.delegates.game;
+package ru.backup.engine.dmn;
 
 import org.springframework.stereotype.Component;
 import ru.backup.engine.delegates.DelegateExecutionHandler;
@@ -9,7 +9,7 @@ public class CheckTrackLimit extends JavaDelegateHandler {
 
   @Override
   public void onExecute(DelegateExecutionHandler delegateExecution) throws Exception {
-    delegateExecution.setVariable("tokenLimitReached", isLimitReached());
+    delegateExecution.setVariableLocal("doomTokenLimitReached", isLimitReached());
   }
 
   private boolean isLimitReached() {

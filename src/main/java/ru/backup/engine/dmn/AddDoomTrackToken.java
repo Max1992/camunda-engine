@@ -1,4 +1,4 @@
-package ru.backup.engine.delegates.game;
+package ru.backup.engine.dmn;
 
 import org.springframework.stereotype.Component;
 import ru.backup.engine.delegates.DelegateExecutionHandler;
@@ -9,10 +9,10 @@ public class AddDoomTrackToken extends JavaDelegateHandler {
 
   @Override
   public void onExecute(DelegateExecutionHandler delegateExecution) throws Exception {
-    delegateExecution.setVariable("currentTokenCount", getCurrentDoomTokenCount());
+    delegateExecution.setVariableLocal("totalDoomToken", getTotalDoomToken());
   }
 
-  private int getCurrentDoomTokenCount() {
+  private int getTotalDoomToken() {
     return 2;
   }
 }

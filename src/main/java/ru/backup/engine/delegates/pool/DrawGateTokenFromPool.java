@@ -17,6 +17,6 @@ public class DrawGateTokenFromPool extends JavaDelegateHandler {
   @Override
   protected void onExecute(DelegateExecutionHandler execution) throws Exception {
     String gateId = gateService.drawGateTokenFromPool();
-    execution.setVariable("gateId", gateId);
+    execution.setVariableLocal("gateId", gateId);
   }
 }

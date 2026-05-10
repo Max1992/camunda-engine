@@ -1,0 +1,47 @@
+[
+  {
+    "locationId": "Northside",
+    "whiteArrowTarget": "Downtown",
+    "blackArrowTarget": "MerchantDistrict"
+  },
+  {
+    "locationId": "Downtown",
+    "whiteArrowTarget": "Easttown",
+    "blackArrowTarget": "Northside"
+  },
+  {
+    "locationId": "Easttown",
+    "whiteArrowTarget": "Rivertown",
+    "blackArrowTarget": "Downtown"
+  },
+  {
+    "locationId": "MerchantDistrict",
+    "whiteArrowTarget": "Northside",
+    "blackArrowTarget": "MiskatonicUniversity"
+  },
+  {
+    "locationId": "MiskatonicUniversity",
+    "whiteArrowTarget": "MerchantDistrict",
+    "blackArrowTarget": "FrenchHill"
+  },
+  {
+    "locationId": "FrenchHill",
+    "whiteArrowTarget": "MiskatonicUniversity",
+    "blackArrowTarget": "Southside"
+  },
+  {
+    "locationId": "Rivertown",
+    "whiteArrowTarget": "TheGraveyard",
+    "blackArrowTarget": "Easttown"
+  },
+  {
+    "locationId": "TheGraveyard",
+    "whiteArrowTarget": "Southside",
+    "blackArrowTarget": "Rivertown"
+  },
+  {
+    "locationId": "Southside",
+    "whiteArrowTarget": "FrenchHill",
+    "blackArrowTarget": "TheGraveyard"
+  }
+]

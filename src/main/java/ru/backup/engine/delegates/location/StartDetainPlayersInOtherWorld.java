@@ -19,11 +19,11 @@ public class StartDetainPlayersInOtherWorld extends JavaDelegateHandler {
   @Override
   public void onExecute(DelegateExecutionHandler delegateExecution) throws Exception {
 
-    String player = delegateExecution.getVariable("playerId");
-    String messageName = delegateExecution.getVariable("messageName");
+    String player = delegateExecution.getVariableLocal("playerId");
+    String messageName = delegateExecution.getVariableLocal("messageName");
 
     Map<String, Object> variables = new HashMap<>();
-    variables.put("player", player);
+    variables.put("playerId", player);
     messageService.sendMessage(messageName, delegateExecution, variables);
   }
 }

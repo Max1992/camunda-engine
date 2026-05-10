@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:camunda="http://camunda.org/schema/1.0/dmn" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" id="Definitions_1apigod" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.37.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.23.0">
+  <decision id="Decision_HidingScore" name="Очки скрытности" camunda:historyTimeToLive="180">
+    <decisionTable id="DecisionTable_09jd75m" hitPolicy="COLLECT" aggregation="SUM">
+      <input id="Input_1" label="tags" biodi:width="267">
+        <inputExpression id="InputExpression_1" typeRef="string">
+          <text>tags</text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" label="score" name="score" typeRef="integer" />
+      <rule id="DecisionRule_00rnf8a">
+        <inputEntry id="UnaryTests_0excufv">
+          <text>list contains(tags, "a")</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1pzlzxn">
+          <text>1</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1p5sd75">
+        <inputEntry id="UnaryTests_1jhuhh8">
+          <text>list contains(tags, "b")</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_03dppoo">
+          <text>1</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0invecv">
+        <inputEntry id="UnaryTests_1czry7m">
+          <text>list contains(tags, "c")</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1d893gb">
+          <text>1</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0rtt6dx">
+        <inputEntry id="UnaryTests_0jpo41e">
+          <text>-</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_03y5vjy">
+          <text>0</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="Decision_HidingScore">
+        <dc:Bounds height="80" width="180" x="160" y="100" />
+      </dmndi:DMNShape>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

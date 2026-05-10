@@ -24,7 +24,7 @@ public class SendMessage extends JavaDelegateHandler {
 
     String messageName = messageDefinition.getMessage().getName();
     String businessKey = delegateExecution.getBusinessKey();
-    String correlation = delegateExecution.getVariable("correlation");
+    String correlation = delegateExecution.getVariableLocal("correlation");
 
     var runtimeService = delegateExecution.getProcessEngineServices().getRuntimeService();
 

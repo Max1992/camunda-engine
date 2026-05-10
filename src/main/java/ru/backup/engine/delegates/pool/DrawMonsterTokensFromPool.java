@@ -18,7 +18,7 @@ public class DrawMonsterTokensFromPool extends JavaDelegateHandler {
 
   @Override
   public void onExecute(DelegateExecutionHandler delegateExecution) throws Exception {
-    String location = delegateExecution.getVariable("locationId");
+    String location = delegateExecution.getVariableLocal("locationId");
 
     List<String> players = locationService.getPlayersByLocation(location);
 
@@ -27,6 +27,6 @@ public class DrawMonsterTokensFromPool extends JavaDelegateHandler {
       monsterCollection.add("monster_" + i);
     }
 
-    delegateExecution.setVariable("monsterCollection", new ArrayList<>(monsterCollection));
+    delegateExecution.setVariableLocal("monsterCollection", new ArrayList<>(monsterCollection));
   }
 }

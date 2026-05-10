@@ -2,6 +2,13 @@ server:
   port: 5001
 
 camunda.bpm:
+# отключение стандартных средств camunda по деплою
+  deployment-resource-pattern: []
+
+# ручной деплой схем
+  deploy:
+    path: bpmn
+    auto-deploy: true
   admin-user:
     id: admin
     password: admin
@@ -14,6 +21,10 @@ camunda.bpm:
   generic-properties:
     history-cleanup-batch-window-start-time: "00:00"
     history-cleanup-batch-window-end-time: "06:00"
+    properties:
+      # Позволяет Job Executor выполнять асинхронные таски
+      # даже без явной локальной регистрации приложения
+      job-executor-deployment-aware: false
 
 spring:
   h2:
@@ -35,3 +46,6 @@ logging:
     org.hibernate.orm.jdbc.bind: TRACE
     # Специфичные логи для Camunda (SQL-запросы движка)
     org.camunda.bpm.engine.persistence: INFO
+    org.camunda.bpm.engine.repository: DEBUG
+    org.camunda.bpm.engine.impl.cfg: INFO
+    org.camunda.bpm.application: INFO

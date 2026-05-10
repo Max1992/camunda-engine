@@ -5,7 +5,6 @@ import org.camunda.bpm.engine.ProcessEngineServices;
 import org.camunda.bpm.engine.delegate.BpmnError;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.variable.Variables;
-import org.camunda.bpm.engine.variable.Variables.SerializationDataFormats;
 import org.camunda.bpm.engine.variable.value.ObjectValue;
 import org.camunda.bpm.model.bpmn.instance.FlowElement;
 
@@ -32,8 +31,8 @@ public class DelegateExecutionHandler {
     setVariable(name, transientVariable);
   }
 
-  public  <T> T getVariable(String variable) {
-    T value = (T) execution.getVariable(variable);
+  public  <T> T getVariableLocal(String variable) {
+    T value = (T) execution.getVariableLocal(variable);
     if (value == null) {
       throw new BpmnError("error500", "В списке параметров не найден ключ " + variable);
     }
