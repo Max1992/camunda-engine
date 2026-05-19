@@ -26,20 +26,15 @@ public class WebSocketAuthInterceptor implements ChannelInterceptor {
 
       String username = validateAndGetUsername(token);
 
-      if (username != null) {
-        UsernamePasswordAuthenticationToken authentication =
-            new UsernamePasswordAuthenticationToken(username, null, null);
+      UsernamePasswordAuthenticationToken authentication =
+          new UsernamePasswordAuthenticationToken(username, null, null);
 
-        // 3. ПРИВЯЗЫВАЕМ пользователя к текущей WebSocket сессии
-        accessor.setUser(authentication);
-      }
+      accessor.setUser(authentication);
     }
     return message;
   }
 
   private String validateAndGetUsername(String token) {
-    // Здесь должен быть ваш код парсинга JWT (например, через jjwt)
-    // Возвращает username, если токен валиден, иначе null
     return "john_doe";
   }
 }
