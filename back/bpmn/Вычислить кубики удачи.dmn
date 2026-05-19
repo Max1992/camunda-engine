@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:camunda="http://camunda.org/schema/1.0/dmn" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" id="Definitions_1sblg18" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.37.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.23.0">
+  <decision id="Decision_0ejmcoa" name="Вычислить кубики удачи" camunda:historyTimeToLive="180">
+    <decisionTable id="DecisionTable_011xxmi" hitPolicy="COLLECT" aggregation="SUM">
+      <input id="Input_1" label="skills" biodi:width="293">
+        <inputExpression id="InputExpression_1" typeRef="string">
+          <text>skills</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_04n96e1" label="ally" biodi:width="331">
+        <inputExpression id="LiteralExpression_05to01p" typeRef="string">
+          <text>ally</text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" label="dices" name="dices" typeRef="integer" />
+      <rule id="DecisionRule_1cwnjf9">
+        <inputEntry id="UnaryTests_0cpvcwc">
+          <text>list contains(skills, "SKILL_00005")</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1r33ru8">
+          <text>-</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_121a957">
+          <text>1</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1clulp2">
+        <inputEntry id="UnaryTests_0nvy2th">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1pzdwkf">
+          <text>list contains(ally, "ALLY_00001")</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0mxw7sj">
+          <text>2</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_14z65g3">
+        <inputEntry id="UnaryTests_0015maq">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0lxbro2">
+          <text>list contains(ally, "ALLY_00006")</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0qepqem">
+          <text>1</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1f5plpw">
+        <inputEntry id="UnaryTests_0t7t5va">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ta45s0">
+          <text>-</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1crta49">
+          <text>0</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="Decision_0ejmcoa">
+        <dc:Bounds height="80" width="180" x="160" y="100" />
+      </dmndi:DMNShape>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

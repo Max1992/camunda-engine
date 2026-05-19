@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:camunda="http://camunda.org/schema/1.0/dmn" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" id="Definitions_0m0xxyv" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.37.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.23.0">
+  <decision id="Decision_1ryv9go" name="Проверка броска кубиков" camunda:versionTag="" camunda:historyTimeToLive="180">
+    <description>Проверка броска кубиков</description>
+    <decisionTable id="DecisionTable_0jz76ge" hitPolicy="FIRST">
+      <input id="Input_1" label="playerStatus" biodi:width="150">
+        <inputExpression id="InputExpression_1" typeRef="string">
+          <text>playerStatus</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1tnymta" label="requiredSuccesses">
+        <inputExpression id="LiteralExpression_06yjqxi" typeRef="integer">
+          <text>requiredSuccesses</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_07smjj3" label="diceRolls" biodi:width="408">
+        <inputExpression id="LiteralExpression_1ojk3jv" typeRef="string">
+          <text>diceRolls</text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" label="encounterResult" name="encounterResult" typeRef="string" />
+      <rule id="DecisionRule_0vunb86">
+        <description>Игрок благословнел: успех от 4</description>
+        <inputEntry id="UnaryTests_1agfivs">
+          <text>"BLESSED"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0p2g059">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0hp6xlr">
+          <text>count(diceRolls[item &gt;= 4]) &gt;= requiredSuccesses</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_091153q">
+          <text>"SUCCESS"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1wichaw">
+        <description>Игрок обычный: успех от 5</description>
+        <inputEntry id="UnaryTests_13y4fyn">
+          <text>"NORMAL"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0xkcdio">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0holw7s">
+          <text>count(diceRolls[item &gt;= 5]) &gt;= requiredSuccesses</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0ujb00x">
+          <text>"SUCCESS"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1jmk0rs">
+        <description>Игрок проклят: успех от 6</description>
+        <inputEntry id="UnaryTests_0myrbgo">
+          <text>"CURSED"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1yys2pc">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1xhtmr6">
+          <text>count(diceRolls[item &gt;= 6]) &gt;= requiredSuccesses</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0uwpxj7">
+          <text>"SUCCESS"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0m3b7cc">
+        <inputEntry id="UnaryTests_1qdqmd3">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ju8dqi">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_10c3m74">
+          <text>-</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1vfk46y">
+          <text>"FAIL"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="Decision_1ryv9go">
+        <dc:Bounds height="80" width="180" x="160" y="80" />
+      </dmndi:DMNShape>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

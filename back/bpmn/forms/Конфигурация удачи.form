@@ -1,0 +1,78 @@
+{
+  "components": [
+    {
+      "label": "Карты навыков",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_127v8tt",
+        "columns": null
+      },
+      "id": "Field_0rih7ig",
+      "key": "lst_skills",
+      "readonly": false
+    },
+    {
+      "label": "Карты союзников",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_10g4bqa",
+        "columns": null
+      },
+      "id": "Field_03z63qo",
+      "key": "lst_ally"
+    },
+    {
+      "label": "Количество кубиков для броска",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0njq8wk",
+        "columns": null
+      },
+      "id": "Field_01s1zo7",
+      "key": "availableDices",
+      "properties": {},
+      "readonly": "on"
+    },
+    {
+      "label": "Сложность проверки",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0o8bpcn",
+        "columns": null
+      },
+      "id": "Field_1kf4qwe",
+      "key": "difficulty",
+      "readonly": "on"
+    },
+    {
+      "label": "Базовое значение навыка",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1rqwotb",
+        "columns": null
+      },
+      "id": "Field_0rd1phk",
+      "key": "base",
+      "readonly": false
+    },
+    {
+      "label": "Применить",
+      "type": "checkbox",
+      "layout": {
+        "row": "Row_0cu4bpl",
+        "columns": null
+      },
+      "id": "Field_0zak0de",
+      "key": "approved"
+    }
+  ],
+  "type": "default",
+  "id": "Form_0h8p23p",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.37.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.23.0",
+  "schemaVersion": 18
+}

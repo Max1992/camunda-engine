@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0jj8nks" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.37.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.23.0">
+  <bpmn:collaboration id="Collaboration_0ng2dr7">
+    <bpmn:participant id="Participant_0xfhaty" name="Уход от монстра" processRef="Process_0iq4ump" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_0iq4ump" name="Уход от монстра" isExecutable="true" camunda:historyTimeToLive="180" camunda:isStartableInTasklist="false">
+    <bpmn:serviceTask id="Activity_0oeeor5" name="Получить модификаторы игрока" camunda:delegateExpression="${nop}">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="playerId">${playerId}</camunda:inputParameter>
+          <camunda:outputParameter name="playerTags">${playerTags}</camunda:outputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1ghd9rb</bpmn:incoming>
+      <bpmn:outgoing>Flow_1dducnw</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="Activity_0k0ptd5" name="Получить модификаторы монстра" camunda:delegateExpression="${nop}">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="monsterId">${monsterId}</camunda:inputParameter>
+          <camunda:outputParameter name="monsterTags">${monsterTags}</camunda:outputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1dducnw</bpmn:incoming>
+      <bpmn:outgoing>Flow_0lihtt9</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="Activity_1pg040m" name="Получить модификаторы игры" camunda:delegateExpression="${nop}">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:outputParameter name="gameTags">${gameTags}</camunda:outputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0lihtt9</bpmn:incoming>
+      <bpmn:outgoing>Flow_0d9e4d4</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:businessRuleTask id="Activity_0vlnycc" name="Вычислить количество кубиков" camunda:resultVariable="score" camunda:decisionRef="" camunda:mapDecisionResult="singleEntry">
+      <bpmn:incoming>Flow_0d9e4d4</bpmn:incoming>
+      <bpmn:outgoing>Flow_0fzgjhc</bpmn:outgoing>
+    </bpmn:businessRuleTask>
+    <bpmn:userTask id="Activity_1xyx8p1" name="Отправить игроку результат" camunda:assignee="">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="score">${score}</camunda:inputParameter>
+          <camunda:inputParameter name="playerTags">${playerTags}</camunda:inputParameter>
+          <camunda:inputParameter name="monsterTags">${monsterTags}</camunda:inputParameter>
+          <camunda:inputParameter name="gameTags">${gameTags}</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0fzgjhc</bpmn:incoming>
+      <bpmn:outgoing>Flow_1xpqx1i</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:exclusiveGateway id="Gateway_1didc94">
+      <bpmn:incoming>Flow_1xpqx1i</bpmn:incoming>
+      <bpmn:outgoing>Flow_1o0sm6r</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1fz4jlo</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_0qmp5ac</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:exclusiveGateway id="Gateway_17ikg67">
+      <bpmn:incoming>Flow_0qmp5ac</bpmn:incoming>
+      <bpmn:incoming>Flow_1o0sm6r</bpmn:incoming>
+      <bpmn:outgoing>Flow_1ghd9rb</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:serviceTask id="Activity_18mfjw8" name="Бросить кубики" camunda:delegateExpression="${nop}">
+      <bpmn:incoming>Flow_1fz4jlo</bpmn:incoming>
+      <bpmn:outgoing>Flow_1p9yz3c</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_1ghd9rb" sourceRef="Gateway_17ikg67" targetRef="Activity_0oeeor5" />
+    <bpmn:sequenceFlow id="Flow_1dducnw" sourceRef="Activity_0oeeor5" targetRef="Activity_0k0ptd5" />
+    <bpmn:sequenceFlow id="Flow_0lihtt9" sourceRef="Activity_0k0ptd5" targetRef="Activity_1pg040m" />
+    <bpmn:sequenceFlow id="Flow_0d9e4d4" sourceRef="Activity_1pg040m" targetRef="Activity_0vlnycc" />
+    <bpmn:sequenceFlow id="Flow_0fzgjhc" sourceRef="Activity_0vlnycc" targetRef="Activity_1xyx8p1" />
+    <bpmn:sequenceFlow id="Flow_1xpqx1i" sourceRef="Activity_1xyx8p1" targetRef="Gateway_1didc94" />
+    <bpmn:sequenceFlow id="Flow_1o0sm6r" name="Игрок может изменить свои параметры" sourceRef="Gateway_1didc94" targetRef="Gateway_17ikg67" />
+    <bpmn:sequenceFlow id="Flow_1fz4jlo" sourceRef="Gateway_1didc94" targetRef="Activity_18mfjw8" />
+    <bpmn:sequenceFlow id="Flow_0qmp5ac" sourceRef="StartEvent_1" targetRef="Gateway_17ikg67" />
+    <bpmn:exclusiveGateway id="Gateway_0v30iqn">
+      <bpmn:incoming>Flow_1p9yz3c</bpmn:incoming>
+      <bpmn:outgoing>Flow_1m9gk17</bpmn:outgoing>
+      <bpmn:outgoing>Flow_05pc9mv</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_1p9yz3c" sourceRef="Activity_18mfjw8" targetRef="Gateway_0v30iqn" />
+    <bpmn:sequenceFlow id="Flow_1m9gk17" sourceRef="Gateway_0v30iqn" targetRef="Activity_1y8su85" />
+    <bpmn:userTask id="Activity_1y8su85" name="Неудача">
+      <bpmn:incoming>Flow_1m9gk17</bpmn:incoming>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_05pc9mv" sourceRef="Gateway_0v30iqn" targetRef="Activity_13lm8pl" />
+    <bpmn:userTask id="Activity_13lm8pl" name="Успех">
+      <bpmn:incoming>Flow_05pc9mv</bpmn:incoming>
+      <bpmn:outgoing>Flow_1l4ei6t</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:endEvent id="Event_0wpqd5d">
+      <bpmn:incoming>Flow_1l4ei6t</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1l4ei6t" sourceRef="Activity_13lm8pl" targetRef="Event_0wpqd5d" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_0ng2dr7">
+      <bpmndi:BPMNShape id="Participant_0xfhaty_di" bpmnElement="Participant_0xfhaty" isHorizontal="true">
+        <dc:Bounds x="160" y="55" width="1678" height="475" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1c1guss_di" bpmnElement="Activity_0oeeor5">
+        <dc:Bounds x="420" y="260" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_01y7d0r_di" bpmnElement="Activity_0k0ptd5">
+        <dc:Bounds x="580" y="260" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1oq56ws_di" bpmnElement="Activity_1pg040m">
+        <dc:Bounds x="740" y="260" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1r49aiu_di" bpmnElement="Activity_0vlnycc">
+        <dc:Bounds x="900" y="260" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0rjxwzg_di" bpmnElement="Activity_1xyx8p1">
+        <dc:Bounds x="1070" y="260" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1didc94_di" bpmnElement="Gateway_1didc94" isMarkerVisible="true">
+        <dc:Bounds x="1215" y="275" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0wqlp56_di" bpmnElement="StartEvent_1">
+        <dc:Bounds x="252" y="282" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_17ikg67_di" bpmnElement="Gateway_17ikg67" isMarkerVisible="true">
+        <dc:Bounds x="315" y="275" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0lv2wzc_di" bpmnElement="Activity_18mfjw8">
+        <dc:Bounds x="1310" y="260" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0v30iqn_di" bpmnElement="Gateway_0v30iqn" isMarkerVisible="true">
+        <dc:Bounds x="1455" y="275" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_05b9kmz_di" bpmnElement="Activity_1y8su85">
+        <dc:Bounds x="1550" y="160" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_09n2zd3_di" bpmnElement="Activity_13lm8pl">
+        <dc:Bounds x="1550" y="350" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0wpqd5d_di" bpmnElement="Event_0wpqd5d">
+        <dc:Bounds x="1702" y="372" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1ghd9rb_di" bpmnElement="Flow_1ghd9rb">
+        <di:waypoint x="365" y="300" />
+        <di:waypoint x="420" y="300" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1dducnw_di" bpmnElement="Flow_1dducnw">
+        <di:waypoint x="520" y="300" />
+        <di:waypoint x="580" y="300" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0lihtt9_di" bpmnElement="Flow_0lihtt9">
+        <di:waypoint x="680" y="300" />
+        <di:waypoint x="740" y="300" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0d9e4d4_di" bpmnElement="Flow_0d9e4d4">
+        <di:waypoint x="840" y="300" />
+        <di:waypoint x="900" y="300" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0fzgjhc_di" bpmnElement="Flow_0fzgjhc">
+        <di:waypoint x="1000" y="300" />
+        <di:waypoint x="1070" y="300" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1xpqx1i_di" bpmnElement="Flow_1xpqx1i">
+        <di:waypoint x="1170" y="300" />
+        <di:waypoint x="1215" y="300" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1o0sm6r_di" bpmnElement="Flow_1o0sm6r">
+        <di:waypoint x="1240" y="275" />
+        <di:waypoint x="1240" y="200" />
+        <di:waypoint x="340" y="200" />
+        <di:waypoint x="340" y="275" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="753" y="150" width="75" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1fz4jlo_di" bpmnElement="Flow_1fz4jlo">
+        <di:waypoint x="1265" y="300" />
+        <di:waypoint x="1310" y="300" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0qmp5ac_di" bpmnElement="Flow_0qmp5ac">
+        <di:waypoint x="288" y="300" />
+        <di:waypoint x="315" y="300" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1p9yz3c_di" bpmnElement="Flow_1p9yz3c">
+        <di:waypoint x="1410" y="300" />
+        <di:waypoint x="1455" y="300" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1m9gk17_di" bpmnElement="Flow_1m9gk17">
+        <di:waypoint x="1480" y="275" />
+        <di:waypoint x="1480" y="200" />
+        <di:waypoint x="1550" y="200" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_05pc9mv_di" bpmnElement="Flow_05pc9mv">
+        <di:waypoint x="1480" y="325" />
+        <di:waypoint x="1480" y="390" />
+        <di:waypoint x="1550" y="390" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1l4ei6t_di" bpmnElement="Flow_1l4ei6t">
+        <di:waypoint x="1650" y="390" />
+        <di:waypoint x="1702" y="390" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

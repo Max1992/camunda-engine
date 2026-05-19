@@ -1,0 +1,23 @@
+<div style="max-width: 600px; margin: 20px auto; font-family: sans-serif;">
+  <h2 style="color: #333; border-bottom: 20px;">Мои задачи Camunda (Реальное время)</h2>
+
+  @if (tasks().length === 0) {
+    <div style="padding: 20px; background: #f9f9f9; text-align: center; border-radius: 8px;">
+      <p>Активных задач нет. Все процессы завершены! 🎉</p>
+    </div>
+  } @else {
+    <div style="display: flex; flex-direction: column; gap: 12px;">
+      @for (task of tasks(); track task.taskId) {
+        <div style="border: 1px solid #ddd; padding: 16px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; background: #fff; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+          <div>
+            <h3 style="margin: 0 0 4px 0; color: #007bff;">{{ task.taskName }}</h3>
+            <small style="color: #666;">ID: {{ task.taskId }}</small>
+          </div>
+          <button (click)="openForm(task.taskId)" style="background: #28a745; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;">
+            Выполнить
+          </button>
+        </div>
+      }
+    </div>
+  }
+</div>
