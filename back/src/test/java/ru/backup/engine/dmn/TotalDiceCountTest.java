@@ -31,7 +31,7 @@ public class TotalDiceCountTest {
       .build();
 
   private static final String DMN_KEY = "totalDiceCount"; // ID таблицы из свойств DMN
-  private static final String DMN_FILE_NAME = "Вычислить итоговое количество кубиков.dmn";
+  private static final String DMN_FILE_NAME = "totalDiceCount.dmn";
 
   @AfterEach
   void tearDown() {

@@ -46,8 +46,8 @@ public class LuckConfigurationTest {
   @BeforeAll
   public static void beforeAll() throws FileNotFoundException {
     TestUtils.deploy("Настройка параметров броска игроком.bpmn");
-    TestUtils.deploy("Вычислить кубики удачи.dmn");
-    TestUtils.deploy("Вычислить итоговое количество кубиков.dmn");
+    TestUtils.deploy("Decision_0ejmcoa.dmn");
+    TestUtils.deploy("totalDiceCount.dmn");
   }
 
   @AfterEach

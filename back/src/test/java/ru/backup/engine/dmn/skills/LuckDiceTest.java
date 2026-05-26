@@ -32,7 +32,7 @@ public class LuckDiceTest {
       .build();
 
   private static final String DMN_KEY = "Decision_0ejmcoa"; // ID таблицы из свойств DMN
-  private static final String DMN_FILE_NAME = "Вычислить кубики удачи.dmn";
+  private static final String DMN_FILE_NAME = "Decision_0ejmcoa.dmn";
 
   @AfterEach
   void tearDown() {
