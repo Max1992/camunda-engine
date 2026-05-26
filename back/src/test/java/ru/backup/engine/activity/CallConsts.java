@@ -7,5 +7,4 @@ public class CallConsts {
   public static final String MONSTER_MOVEMENT_WHITE_TASK = "Process_1uvrkvj";
   public static final String MONSTER_MOVEMENT_BLACK_TASK = "Process_1uvrkvj";
   public static final String INVOKE_MYTH_SPECIAL_ACTION_TASK = "invokeMythSpecialAction";
-  public static final String INVOKE_CALCULATE_DICES_TASK = "Process_1ks3i4z";
 }

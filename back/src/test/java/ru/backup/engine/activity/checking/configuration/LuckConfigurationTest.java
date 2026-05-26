@@ -63,8 +63,6 @@ public class LuckConfigurationTest {
     Mocks.register("convertInputMap", new ConvertInputMapListener());
     Mocks.register("convertOutputMap", new ConvertOutputMapListener());
 
-    CamundaMockito.registerCallActivityMock(INVOKE_CALCULATE_DICES_TASK);
-
     Mockito.doAnswer(invocation -> {
       var execution = (org.camunda.bpm.engine.delegate.DelegateExecution) invocation.getArgument(0);
       execution.setVariableLocal("skills", new ArrayList<>(List.of("SKILL_00005")));
@@ -89,8 +87,7 @@ public class LuckConfigurationTest {
     );
 
     assertThat(pi).hasPassed(
-        "Activity_1djzwns", // Получить базовые характеристики проверки
-        "Activity_0w778uq" // (call) Расчет кубиков
+        "Activity_1djzwns" // Получить базовые характеристики проверки
     );
 
     String userTaskId = "Activity_0849wro";

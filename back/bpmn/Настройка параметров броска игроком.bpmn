@@ -1,45 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0sti6rv" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.37.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.23.0">
   <bpmn:collaboration id="Collaboration_0l7f74z">
-    <bpmn:participant id="Participant_1s0sacl" name="Расчет кубиков" processRef="Process_1ks3i4z" />
     <bpmn:participant id="Participant_0i7lxsh" name="Базовая конфигурация проверки навыка" processRef="Process_0hnbcs4" />
-    <bpmn:messageFlow id="Flow_12fq4qd" sourceRef="Activity_0w778uq" targetRef="Event_1elysia" />
   </bpmn:collaboration>
-  <bpmn:process id="Process_1ks3i4z" name="Расчет кубиков" isExecutable="true" camunda:historyTimeToLive="180" camunda:isStartableInTasklist="false">
-    <bpmn:startEvent id="Event_1elysia">
-      <bpmn:outgoing>Flow_09f1rfq</bpmn:outgoing>
-    </bpmn:startEvent>
-    <bpmn:businessRuleTask id="Activity_1da2son" name="Вычисление пула кубиков (decisionRuleId)" camunda:resultVariable="dices" camunda:decisionRef="${decisionRuleId}" camunda:mapDecisionResult="singleEntry" camunda:decisionRefTenantId="">
-      <bpmn:extensionElements />
-      <bpmn:incoming>Flow_09f1rfq</bpmn:incoming>
-      <bpmn:outgoing>Flow_0josknu</bpmn:outgoing>
-    </bpmn:businessRuleTask>
-    <bpmn:businessRuleTask id="Activity_1dpvmge" name="Вычислить достпуное значение кубиков" camunda:resultVariable="availableDices" camunda:decisionRef="totalDiceCount" camunda:mapDecisionResult="singleEntry">
-      <bpmn:extensionElements />
-      <bpmn:incoming>Flow_0josknu</bpmn:incoming>
-      <bpmn:outgoing>Flow_0snlik9</bpmn:outgoing>
-    </bpmn:businessRuleTask>
-    <bpmn:endEvent id="Event_01uc7rm">
-      <bpmn:incoming>Flow_0snlik9</bpmn:incoming>
-    </bpmn:endEvent>
-    <bpmn:sequenceFlow id="Flow_09f1rfq" sourceRef="Event_1elysia" targetRef="Activity_1da2son" />
-    <bpmn:sequenceFlow id="Flow_0josknu" sourceRef="Activity_1da2son" targetRef="Activity_1dpvmge" />
-    <bpmn:sequenceFlow id="Flow_0snlik9" sourceRef="Activity_1dpvmge" targetRef="Event_01uc7rm" />
-  </bpmn:process>
   <bpmn:process id="Process_0hnbcs4" name="Базовая конфигурация проверки навыка" isExecutable="true" camunda:historyTimeToLive="180">
-    <bpmn:callActivity id="Activity_0w778uq" name="(call) Расчет кубиков" calledElement="Process_1ks3i4z">
-      <bpmn:extensionElements>
-        <camunda:in source="decisionRuleId" target="decisionRuleId" />
-        <camunda:in source="difficulty" target="difficulty" />
-        <camunda:in source="base" target="base" />
-        <camunda:in source="skills" target="skills" />
-        <camunda:in source="ally" target="ally" />
-        <camunda:out source="availableDices" target="availableDices" />
-        <camunda:in source="wasteOfClueCount" target="wasteOfClueCount" />
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_14xm6mh</bpmn:incoming>
-      <bpmn:outgoing>Flow_0hdmknu</bpmn:outgoing>
-    </bpmn:callActivity>
     <bpmn:exclusiveGateway id="Gateway_02i2r95">
       <bpmn:incoming>Flow_0rs59z7</bpmn:incoming>
       <bpmn:incoming>Flow_1m5d0ay</bpmn:incoming>
@@ -64,15 +28,14 @@
     <bpmn:startEvent id="Event_0ne2dwg">
       <bpmn:outgoing>Flow_0cymewi</bpmn:outgoing>
     </bpmn:startEvent>
-    <bpmn:sequenceFlow id="Flow_17ahjbu" sourceRef="Gateway_1ygrtu1" targetRef="Event_1qzdb7r" />
-    <bpmn:sequenceFlow id="Flow_1v29zy7" sourceRef="Activity_0849wro" targetRef="Gateway_1ygrtu1" />
-    <bpmn:sequenceFlow id="Flow_0rs59z7" sourceRef="Gateway_1ygrtu1" targetRef="Gateway_02i2r95">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{!approved}</bpmn:conditionExpression>
-    </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_14xm6mh" sourceRef="Gateway_02i2r95" targetRef="Activity_0w778uq" />
-    <bpmn:sequenceFlow id="Flow_1m5d0ay" sourceRef="Activity_1djzwns" targetRef="Gateway_02i2r95" />
-    <bpmn:sequenceFlow id="Flow_0cymewi" sourceRef="Event_0ne2dwg" targetRef="Activity_1djzwns" />
-    <bpmn:sequenceFlow id="Flow_0hdmknu" sourceRef="Activity_0w778uq" targetRef="Activity_0849wro" />
+    <bpmn:endEvent id="Event_1qzdb7r">
+      <bpmn:incoming>Flow_17ahjbu</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:exclusiveGateway id="Gateway_1ygrtu1" default="Flow_17ahjbu">
+      <bpmn:incoming>Flow_1v29zy7</bpmn:incoming>
+      <bpmn:outgoing>Flow_17ahjbu</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0rs59z7</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
     <bpmn:userTask id="Activity_0849wro" name="Подтверждение" camunda:formRef="${formId}" camunda:formRefBinding="latest" camunda:assignee="${assignee}" camunda:priority="100">
       <bpmn:extensionElements>
         <camunda:inputOutput>
@@ -87,113 +50,98 @@
         <camunda:taskListener delegateExpression="${convertInputMap}" event="create" id="" />
         <camunda:taskListener delegateExpression="${convertOutputMap}" event="complete" id="" />
       </bpmn:extensionElements>
-      <bpmn:incoming>Flow_0hdmknu</bpmn:incoming>
+      <bpmn:incoming>Flow_1h8oyr7</bpmn:incoming>
       <bpmn:outgoing>Flow_1v29zy7</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:exclusiveGateway id="Gateway_1ygrtu1" default="Flow_17ahjbu">
-      <bpmn:incoming>Flow_1v29zy7</bpmn:incoming>
-      <bpmn:outgoing>Flow_17ahjbu</bpmn:outgoing>
-      <bpmn:outgoing>Flow_0rs59z7</bpmn:outgoing>
-    </bpmn:exclusiveGateway>
-    <bpmn:endEvent id="Event_1qzdb7r">
-      <bpmn:incoming>Flow_17ahjbu</bpmn:incoming>
-    </bpmn:endEvent>
+    <bpmn:businessRuleTask id="Activity_1oaovv0" name="Вычисление пула кубиков (decisionRuleId)" camunda:resultVariable="dices" camunda:decisionRef="${decisionRuleId}" camunda:mapDecisionResult="singleEntry" camunda:decisionRefTenantId="">
+      <bpmn:incoming>Flow_14xm6mh</bpmn:incoming>
+      <bpmn:outgoing>Flow_1jixsqb</bpmn:outgoing>
+    </bpmn:businessRuleTask>
+    <bpmn:sequenceFlow id="Flow_0rs59z7" name="Уточнение" sourceRef="Gateway_1ygrtu1" targetRef="Gateway_02i2r95">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{!approved}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_1m5d0ay" sourceRef="Activity_1djzwns" targetRef="Gateway_02i2r95" />
+    <bpmn:sequenceFlow id="Flow_14xm6mh" sourceRef="Gateway_02i2r95" targetRef="Activity_1oaovv0" />
+    <bpmn:sequenceFlow id="Flow_0cymewi" sourceRef="Event_0ne2dwg" targetRef="Activity_1djzwns" />
+    <bpmn:sequenceFlow id="Flow_17ahjbu" sourceRef="Gateway_1ygrtu1" targetRef="Event_1qzdb7r" />
+    <bpmn:sequenceFlow id="Flow_1v29zy7" sourceRef="Activity_0849wro" targetRef="Gateway_1ygrtu1" />
+    <bpmn:sequenceFlow id="Flow_1h8oyr7" sourceRef="Activity_14z645t" targetRef="Activity_0849wro" />
+    <bpmn:sequenceFlow id="Flow_1jixsqb" sourceRef="Activity_1oaovv0" targetRef="Activity_14z645t" />
+    <bpmn:businessRuleTask id="Activity_14z645t" name="Вычислить достпуное значение кубиков" camunda:resultVariable="availableDices" camunda:decisionRef="totalDiceCount" camunda:mapDecisionResult="singleEntry">
+      <bpmn:incoming>Flow_1jixsqb</bpmn:incoming>
+      <bpmn:outgoing>Flow_1h8oyr7</bpmn:outgoing>
+    </bpmn:businessRuleTask>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_0l7f74z">
-      <bpmndi:BPMNShape id="Participant_1s0sacl_di" bpmnElement="Participant_1s0sacl" isHorizontal="true">
-        <dc:Bounds x="580" y="110" width="530" height="180" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_1elysia_di" bpmnElement="Event_1elysia">
-        <dc:Bounds x="642" y="182" width="36" height="36" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="BPMNShape_1elqo3m" bpmnElement="Activity_1da2son">
-        <dc:Bounds x="730" y="160" width="100" height="80" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="BPMNShape_1qn4qct" bpmnElement="Activity_1dpvmge">
-        <dc:Bounds x="880" y="160" width="100" height="80" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_01uc7rm_di" bpmnElement="Event_01uc7rm">
-        <dc:Bounds x="1042" y="182" width="36" height="36" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="Flow_09f1rfq_di" bpmnElement="Flow_09f1rfq">
-        <di:waypoint x="678" y="200" />
-        <di:waypoint x="730" y="200" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="BPMNEdge_0yq6l39" bpmnElement="Flow_0josknu">
-        <di:waypoint x="830" y="200" />
-        <di:waypoint x="880" y="200" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0snlik9_di" bpmnElement="Flow_0snlik9">
-        <di:waypoint x="980" y="200" />
-        <di:waypoint x="1042" y="200" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Participant_0i7lxsh_di" bpmnElement="Participant_0i7lxsh" isHorizontal="true">
-        <dc:Bounds x="160" y="360" width="890" height="230" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0rciea1_di" bpmnElement="Activity_0w778uq">
-        <dc:Bounds x="542" y="460" width="100" height="80" />
+        <dc:Bounds x="160" y="80" width="1210" height="230" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Gateway_02i2r95_di" bpmnElement="Gateway_02i2r95" isMarkerVisible="true">
-        <dc:Bounds x="457" y="475" width="50" height="50" />
+        <dc:Bounds x="457" y="195" width="50" height="50" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_12qjqgh_di" bpmnElement="Activity_1djzwns">
-        <dc:Bounds x="310" y="460" width="100" height="80" />
+        <dc:Bounds x="310" y="180" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_0ne2dwg_di" bpmnElement="Event_0ne2dwg">
-        <dc:Bounds x="212" y="482" width="36" height="36" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0c4fmwj_di" bpmnElement="Activity_0849wro">
-        <dc:Bounds x="720" y="460" width="100" height="80" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Gateway_1ygrtu1_di" bpmnElement="Gateway_1ygrtu1" isMarkerVisible="true">
-        <dc:Bounds x="875" y="475" width="50" height="50" />
+        <dc:Bounds x="212" y="202" width="36" height="36" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_1qzdb7r_di" bpmnElement="Event_1qzdb7r">
-        <dc:Bounds x="992" y="482" width="36" height="36" />
+        <dc:Bounds x="1262" y="202" width="36" height="36" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="Flow_17ahjbu_di" bpmnElement="Flow_17ahjbu">
-        <di:waypoint x="925" y="500" />
-        <di:waypoint x="992" y="500" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1v29zy7_di" bpmnElement="Flow_1v29zy7">
-        <di:waypoint x="820" y="500" />
-        <di:waypoint x="875" y="500" />
-      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Gateway_1ygrtu1_di" bpmnElement="Gateway_1ygrtu1" isMarkerVisible="true">
+        <dc:Bounds x="1155" y="195" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0c4fmwj_di" bpmnElement="Activity_0849wro">
+        <dc:Bounds x="1010" y="180" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_0nhcgjp" bpmnElement="Activity_1oaovv0">
+        <dc:Bounds x="560" y="180" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_0pt68ve" bpmnElement="Activity_14z645t">
+        <dc:Bounds x="860" y="180" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_0rs59z7_di" bpmnElement="Flow_0rs59z7">
-        <di:waypoint x="900" y="475" />
-        <di:waypoint x="900" y="430" />
-        <di:waypoint x="482" y="430" />
-        <di:waypoint x="482" y="475" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_14xm6mh_di" bpmnElement="Flow_14xm6mh">
-        <di:waypoint x="507" y="500" />
-        <di:waypoint x="542" y="500" />
+        <di:waypoint x="1180" y="195" />
+        <di:waypoint x="1180" y="150" />
+        <di:waypoint x="482" y="150" />
+        <di:waypoint x="482" y="195" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="804" y="132" width="54" height="14" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1m5d0ay_di" bpmnElement="Flow_1m5d0ay">
-        <di:waypoint x="410" y="500" />
-        <di:waypoint x="457" y="500" />
+        <di:waypoint x="410" y="220" />
+        <di:waypoint x="457" y="220" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_14xm6mh_di" bpmnElement="Flow_14xm6mh">
+        <di:waypoint x="507" y="220" />
+        <di:waypoint x="560" y="220" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0cymewi_di" bpmnElement="Flow_0cymewi">
-        <di:waypoint x="248" y="500" />
-        <di:waypoint x="310" y="500" />
+        <di:waypoint x="248" y="220" />
+        <di:waypoint x="310" y="220" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0hdmknu_di" bpmnElement="Flow_0hdmknu">
-        <di:waypoint x="642" y="500" />
-        <di:waypoint x="720" y="500" />
+      <bpmndi:BPMNEdge id="Flow_17ahjbu_di" bpmnElement="Flow_17ahjbu">
+        <di:waypoint x="1205" y="220" />
+        <di:waypoint x="1262" y="220" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_12fq4qd_di" bpmnElement="Flow_12fq4qd">
-        <di:waypoint x="600" y="460" />
-        <di:waypoint x="600" y="339" />
-        <di:waypoint x="660" y="339" />
-        <di:waypoint x="660" y="218" />
+      <bpmndi:BPMNEdge id="Flow_1v29zy7_di" bpmnElement="Flow_1v29zy7">
+        <di:waypoint x="1110" y="220" />
+        <di:waypoint x="1155" y="220" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1h8oyr7_di" bpmnElement="Flow_1h8oyr7">
+        <di:waypoint x="960" y="220" />
+        <di:waypoint x="1010" y="220" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1jixsqb_di" bpmnElement="Flow_1jixsqb">
+        <di:waypoint x="660" y="220" />
+        <di:waypoint x="860" y="220" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
