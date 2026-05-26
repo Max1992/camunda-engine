@@ -59,7 +59,7 @@ public class LuckConfigurationTest {
   public void setUp() throws Exception {
     JavaDelegate getLuckConfigurationMock = Mockito.mock(JavaDelegate.class);
 
-    Mocks.register(GET_LUCK_CONFIGURATION_TASK, getLuckConfigurationMock);
+    Mocks.register(SERVICE_ROUTE_TASK, getLuckConfigurationMock);
     Mocks.register("convertInputMap", new ConvertInputMapListener());
     Mocks.register("convertOutputMap", new ConvertOutputMapListener());
 
@@ -83,7 +83,8 @@ public class LuckConfigurationTest {
         withVariables(
             "playerId", "player_0001",
             "difficulty", 1,
-            "assignee", "admin"
+            "assignee", "admin",
+            "targetService", "dummy"
         )
     );
 

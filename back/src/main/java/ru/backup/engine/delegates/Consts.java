@@ -20,4 +20,5 @@ public class Consts {
   public static final String PUT_CLUE_TO_PLAYER_TASK = "grantClueToInvestigator";
   public static final String DETERMINE_INVESTIGATOR_FOR_CLUE_TASK = "determineInvestigatorForClue";
   public static final String GET_LUCK_CONFIGURATION_TASK = "getLuckConfiguration";
+  public static final String SERVICE_ROUTE_TASK = "serviceRouter";
 }
