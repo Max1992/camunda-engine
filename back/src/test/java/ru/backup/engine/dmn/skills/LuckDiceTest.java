@@ -43,22 +43,29 @@ public class LuckDiceTest {
    * Тестовые данные
    * skills      Навыки
    * ally        Союзники
+   * clue        Количество потрачиваемых улик
    * expected    Ожидаемый рузультат
    * */
   private static Stream<Arguments> provideTestData() {
     return Stream.of(
-        arguments(List.of("SKILL_00005"), List.of("ALLY_00001"), 3),
-        arguments(List.of("SKILL_00005"), List.of("ALLY_00006"), 2),
-        arguments(List.of("SKILL_00005"), List.of("ALLY_00001", "ALLY_00006"), 4),
-        arguments(List.of(""), List.of(""), 0)
+        arguments(List.of("SKILL_00005"), List.of("ALLY_00001"), 0, 3),
+        arguments(List.of("SKILL_00005"), List.of("ALLY_00006"), 0, 2),
+        arguments(List.of("SKILL_00005"), List.of("ALLY_00001", "ALLY_00006"), 0, 4),
+        arguments(List.of(""), List.of(""), 0, 0),
+        // с уликами
+        arguments(List.of(""), List.of(""), 1, 1),
+        arguments(List.of("SKILL_00005"), List.of(""), 0, 1),
+        arguments(List.of("SKILL_00005"), List.of(""), 1, 3),
+        arguments(List.of("SKILL_00005"), List.of(""), 2, 5)
     );
   }
 
-  @ParameterizedTest(name = "{index} ==> Навык: {0}, Союзник: {1}, Кубики {2}")
+  @ParameterizedTest(name = "{index} ==> Навык: {0}, Союзник: {1}, Улики {2} -> {3}")
   @MethodSource("provideTestData")
   public void testLuckDiceRules(
       List<String> skills,
       List<String> ally,
+      int wasteOfClueCount,
       int expected
   ) throws FileNotFoundException {
 
@@ -68,7 +75,8 @@ public class LuckDiceTest {
     // Формируем переменные контекста игры
     Map<String, Object> variables = Variables.createVariables()
         .putValue("skills", skills)
-        .putValue("ally", ally);
+        .putValue("ally", ally)
+        .putValue("wasteOfClueCount", wasteOfClueCount);
 
     // Вычисляем таблицу решений
     var result = decisionService().evaluateDecisionByKey(DMN_KEY)

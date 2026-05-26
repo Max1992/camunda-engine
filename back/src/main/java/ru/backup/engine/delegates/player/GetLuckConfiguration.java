@@ -21,6 +21,8 @@ public class GetLuckConfiguration extends JavaDelegateHandler {
     execution.setVariableLocal("skills", new ArrayList<>(List.of("SKILL_00005")));
     execution.setVariableLocal("ally", new ArrayList<>(List.of("ALLY_00006")));
     execution.setVariableLocal("base", 2);
+    execution.setVariableLocal("availableClue", 2);
+    execution.setVariableLocal("wasteOfClueCount", 0);
     execution.setVariableLocal("decisionRuleId", "Decision_0ejmcoa");
   }
 }

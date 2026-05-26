@@ -31,7 +31,8 @@
             "columns": null
           },
           "id": "Field_03z63qo",
-          "key": "lst_ally"
+          "key": "lst_ally",
+          "readonly": false
         }
       ],
       "showOutline": true,
@@ -55,7 +56,7 @@
           },
           "id": "Field_0rd1phk",
           "key": "base",
-          "readonly": "on"
+          "readonly": false
         },
         {
           "label": "Сложность проверки",
@@ -90,10 +91,42 @@
       "id": "Field_0li03hd"
     },
     {
+      "label": "Улики",
+      "components": [
+        {
+          "label": "Доступные",
+          "type": "textfield",
+          "layout": {
+            "row": "Row_08xkxoz",
+            "columns": null
+          },
+          "id": "Field_1ssnl5p",
+          "key": "availableClue"
+        },
+        {
+          "label": "Потратить",
+          "type": "textfield",
+          "layout": {
+            "row": "Row_08xkxoz",
+            "columns": null
+          },
+          "id": "Field_01qzrqj",
+          "key": "wasteOfClueCount"
+        }
+      ],
+      "showOutline": true,
+      "type": "group",
+      "layout": {
+        "row": "Row_0hhc6qo",
+        "columns": null
+      },
+      "id": "Field_12y5mwc"
+    },
+    {
       "label": "Применить",
       "type": "checkbox",
       "layout": {
-        "row": "Row_0hhc6qo",
+        "row": "Row_159mdht",
         "columns": null
       },
       "id": "Field_0zak0de",

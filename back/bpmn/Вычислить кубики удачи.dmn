@@ -12,13 +12,49 @@
           <text>ally</text>
         </inputExpression>
       </input>
+      <input id="InputClause_1wde954" label="wasteOfClueCount">
+        <inputExpression id="LiteralExpression_1l9kovz" typeRef="integer">
+          <text>wasteOfClueCount</text>
+        </inputExpression>
+      </input>
       <output id="Output_1" label="dices" name="dices" typeRef="integer" />
+      <rule id="DecisionRule_1f5plpw">
+        <inputEntry id="UnaryTests_0t7t5va">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ta45s0">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_071gpun">
+          <text>-</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1crta49">
+          <text>wasteOfClueCount</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0earopo">
+        <inputEntry id="UnaryTests_01wkmn7">
+          <text>list contains(skills, "SKILL_00005")</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0lmnfw3">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1jyvyuo">
+          <text>wasteOfClueCount &gt; 0</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1gjfqpx">
+          <text>wasteOfClueCount</text>
+        </outputEntry>
+      </rule>
       <rule id="DecisionRule_1cwnjf9">
         <inputEntry id="UnaryTests_0cpvcwc">
           <text>list contains(skills, "SKILL_00005")</text>
         </inputEntry>
         <inputEntry id="UnaryTests_1r33ru8">
           <text>-</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1t3f8zo">
+          <text></text>
         </inputEntry>
         <outputEntry id="LiteralExpression_121a957">
           <text>1</text>
@@ -31,6 +67,9 @@
         <inputEntry id="UnaryTests_1pzdwkf">
           <text>list contains(ally, "ALLY_00001")</text>
         </inputEntry>
+        <inputEntry id="UnaryTests_15xo5qo">
+          <text></text>
+        </inputEntry>
         <outputEntry id="LiteralExpression_0mxw7sj">
           <text>2</text>
         </outputEntry>
@@ -42,18 +81,24 @@
         <inputEntry id="UnaryTests_0lxbro2">
           <text>list contains(ally, "ALLY_00006")</text>
         </inputEntry>
+        <inputEntry id="UnaryTests_0sscqxd">
+          <text></text>
+        </inputEntry>
         <outputEntry id="LiteralExpression_0qepqem">
           <text>1</text>
         </outputEntry>
       </rule>
-      <rule id="DecisionRule_1f5plpw">
-        <inputEntry id="UnaryTests_0t7t5va">
+      <rule id="DecisionRule_1ka3ctr">
+        <inputEntry id="UnaryTests_07jv0qq">
           <text>-</text>
         </inputEntry>
-        <inputEntry id="UnaryTests_0ta45s0">
+        <inputEntry id="UnaryTests_15prbhp">
           <text>-</text>
         </inputEntry>
-        <outputEntry id="LiteralExpression_1crta49">
+        <inputEntry id="UnaryTests_12lzvpo">
+          <text>-</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0mzgvwm">
           <text>0</text>
         </outputEntry>
       </rule>
