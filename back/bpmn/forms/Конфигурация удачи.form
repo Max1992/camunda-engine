@@ -49,37 +49,36 @@
       "components": [
         {
           "label": "Базовое значение навыка",
-          "type": "textfield",
+          "type": "number",
           "layout": {
             "row": "Row_0el5fhk",
             "columns": null
           },
-          "id": "Field_0rd1phk",
+          "id": "Field_1hhiex4",
           "key": "base",
-          "readonly": false
+          "readonly": true
         },
         {
           "label": "Сложность проверки",
-          "type": "textfield",
+          "type": "number",
           "layout": {
             "row": "Row_0el5fhk",
             "columns": null
           },
-          "id": "Field_1kf4qwe",
+          "id": "Field_0c1l6kk",
           "key": "difficulty",
           "readonly": "on"
         },
         {
           "label": "Количество кубиков для броска",
-          "type": "textfield",
+          "type": "number",
           "layout": {
             "row": "Row_0el5fhk",
             "columns": null
           },
-          "id": "Field_01s1zo7",
+          "id": "Field_1ozgtxi",
           "key": "availableDices",
-          "properties": {},
-          "readonly": "on"
+          "readonly": true
         }
       ],
       "showOutline": true,
@@ -95,22 +94,23 @@
       "components": [
         {
           "label": "Доступные",
-          "type": "textfield",
+          "type": "number",
           "layout": {
             "row": "Row_08xkxoz",
             "columns": null
           },
-          "id": "Field_1ssnl5p",
-          "key": "availableClue"
+          "id": "Field_1f862w6",
+          "key": "availableClue",
+          "readonly": "on"
         },
         {
           "label": "Потратить",
-          "type": "textfield",
+          "type": "number",
           "layout": {
             "row": "Row_08xkxoz",
             "columns": null
           },
-          "id": "Field_01qzrqj",
+          "id": "Field_1jbugbp",
           "key": "wasteOfClueCount"
         }
       ],
