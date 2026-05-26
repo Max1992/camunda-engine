@@ -71,7 +71,7 @@
           <camunda:outputParameter name="skills">${skills}</camunda:outputParameter>
           <camunda:outputParameter name="ally">${ally}</camunda:outputParameter>
           <camunda:outputParameter name="base">${base}</camunda:outputParameter>
-          <camunda:outputParameter name="decisionRuleId">${decisionRuleId}</camunda:outputParameter>
+          <camunda:outputParameter name="decisionRuleId">Decision_0ejmcoa</camunda:outputParameter>
           <camunda:outputParameter name="availableClue">${availableClue}</camunda:outputParameter>
           <camunda:outputParameter name="wasteOfClueCount">${wasteOfClueCount}</camunda:outputParameter>
         </camunda:inputOutput>

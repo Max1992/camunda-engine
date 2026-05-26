@@ -72,7 +72,7 @@ public class LuckConfigurationTest {
       execution.setVariableLocal("base", 2);
       execution.setVariableLocal("availableClue", 2);
       execution.setVariableLocal("wasteOfClueCount", 0);
-      execution.setVariableLocal("decisionRuleId", "Decision_0ejmcoa");
+      execution.setVariableLocal("decisionRuleId", "Decision_0ejmcoa"); // задается в моделере
       return null;
     }).when(getLuckConfigurationMock).execute(Mockito.any());
   }
