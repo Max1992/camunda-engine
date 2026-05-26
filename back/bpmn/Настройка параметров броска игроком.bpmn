@@ -3,8 +3,7 @@
   <bpmn:collaboration id="Collaboration_0l7f74z">
     <bpmn:participant id="Participant_1s0sacl" name="Расчет кубиков" processRef="Process_1ks3i4z" />
     <bpmn:participant id="Participant_0i7lxsh" name="Конфигурация проверки удачи" processRef="Process_0hnbcs4" />
-    <bpmn:participant id="Participant_0cvqfw7" name="Проверка ужаса" processRef="Process_19n7xhl" />
-    <bpmn:participant id="Participant_1p6u7i9" name="Проверка ухода" processRef="Process_1kr89tn" />
+    <bpmn:participant id="Participant_0cvqfw7" name="Проверка скрытности" processRef="Process_19n7xhl" />
     <bpmn:messageFlow id="Flow_12fq4qd" sourceRef="Activity_0w778uq" targetRef="Event_1elysia" />
   </bpmn:collaboration>
   <bpmn:process id="Process_1ks3i4z" name="Расчет кубиков" isExecutable="true" camunda:historyTimeToLive="180" camunda:isStartableInTasklist="false">
@@ -65,7 +64,7 @@
       <bpmn:incoming>Flow_12xnuo2</bpmn:incoming>
       <bpmn:outgoing>Flow_14xm6mh</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:serviceTask id="Activity_1djzwns" name="Получить базовые характеристики проверки" camunda:delegateExpression="${getLuckConfiguration}">
+    <bpmn:serviceTask id="Activity_1djzwns" name="Получить базовые характеристики проверки удачи" camunda:delegateExpression="${getLuckConfiguration}">
       <bpmn:extensionElements>
         <camunda:inputOutput>
           <camunda:inputParameter name="playerId">${playerId}</camunda:inputParameter>
@@ -121,8 +120,28 @@
     </bpmn:exclusiveGateway>
     <bpmn:sequenceFlow id="Flow_1jdxpvz" sourceRef="Gateway_0l7mmpb" targetRef="Gateway_1ygrtu1" />
   </bpmn:process>
-  <bpmn:process id="Process_19n7xhl" isExecutable="false" />
-  <bpmn:process id="Process_1kr89tn" isExecutable="false" />
+  <bpmn:process id="Process_19n7xhl" name="Проверка скрытности" isExecutable="false" camunda:historyTimeToLive="180" camunda:isStartableInTasklist="false">
+    <bpmn:startEvent id="Event_02b7tmo">
+      <bpmn:outgoing>Flow_0jo85z2</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_0jo85z2" sourceRef="Event_02b7tmo" targetRef="Activity_1l1myd7" />
+    <bpmn:serviceTask id="Activity_1l1myd7" name="Получить базовые характеристики проверки скрытности" camunda:delegateExpression="${getHideConfiguration}">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="playerId">${playerId}</camunda:inputParameter>
+          <camunda:outputParameter name="skills">${skills}</camunda:outputParameter>
+          <camunda:outputParameter name="ally">${ally}</camunda:outputParameter>
+          <camunda:outputParameter name="base">${base}</camunda:outputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0jo85z2</bpmn:incoming>
+      <bpmn:outgoing>Flow_1aswop3</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:exclusiveGateway id="Gateway_1ehau5n">
+      <bpmn:incoming>Flow_1aswop3</bpmn:incoming>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_1aswop3" sourceRef="Activity_1l1myd7" targetRef="Gateway_1ehau5n" />
+  </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_0l7f74z">
       <bpmndi:BPMNShape id="Participant_1s0sacl_di" bpmnElement="Participant_1s0sacl" isHorizontal="true">
@@ -235,13 +254,26 @@
         <di:waypoint x="915" y="500" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Participant_0cvqfw7_di" bpmnElement="Participant_0cvqfw7" isHorizontal="true">
-        <dc:Bounds x="500" y="760" width="600" height="250" />
+        <dc:Bounds x="160" y="750" width="1100" height="250" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Participant_1p6u7i9_di" bpmnElement="Participant_1p6u7i9" isHorizontal="true">
-        <dc:Bounds x="500" y="1050" width="600" height="250" />
-        <bpmndi:BPMNLabel />
+      <bpmndi:BPMNShape id="Event_02b7tmo_di" bpmnElement="Event_02b7tmo">
+        <dc:Bounds x="212" y="852" width="36" height="36" />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1y2ocel_di" bpmnElement="Activity_1l1myd7">
+        <dc:Bounds x="300" y="830" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1ehau5n_di" bpmnElement="Gateway_1ehau5n" isMarkerVisible="true">
+        <dc:Bounds x="455" y="845" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0jo85z2_di" bpmnElement="Flow_0jo85z2">
+        <di:waypoint x="248" y="870" />
+        <di:waypoint x="300" y="870" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1aswop3_di" bpmnElement="Flow_1aswop3">
+        <di:waypoint x="400" y="870" />
+        <di:waypoint x="455" y="870" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_12fq4qd_di" bpmnElement="Flow_12fq4qd">
         <di:waypoint x="600" y="460" />
         <di:waypoint x="600" y="339" />
