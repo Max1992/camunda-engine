@@ -1,65 +1,99 @@
 {
   "components": [
     {
-      "label": "Карты навыков",
-      "type": "textfield",
+      "text": "# Конфигурация проверки удачи",
+      "type": "text",
+      "layout": {
+        "row": "Row_1vh607i",
+        "columns": null
+      },
+      "id": "Field_1yehwrc"
+    },
+    {
+      "label": "Союзники /Навыки",
+      "components": [
+        {
+          "label": "Карты навыков",
+          "type": "textfield",
+          "layout": {
+            "row": "Row_04unrj6",
+            "columns": null
+          },
+          "id": "Field_0rih7ig",
+          "key": "lst_skills",
+          "readonly": false
+        },
+        {
+          "label": "Карты союзников",
+          "type": "textfield",
+          "layout": {
+            "row": "Row_04unrj6",
+            "columns": null
+          },
+          "id": "Field_03z63qo",
+          "key": "lst_ally"
+        }
+      ],
+      "showOutline": true,
+      "type": "group",
       "layout": {
         "row": "Row_127v8tt",
         "columns": null
       },
-      "id": "Field_0rih7ig",
-      "key": "lst_skills",
-      "readonly": false
+      "id": "Field_0wzjr2m",
+      "verticalAlignment": "center"
     },
     {
-      "label": "Карты союзников",
-      "type": "textfield",
+      "label": "Параметры",
+      "components": [
+        {
+          "label": "Базовое значение навыка",
+          "type": "textfield",
+          "layout": {
+            "row": "Row_0el5fhk",
+            "columns": null
+          },
+          "id": "Field_0rd1phk",
+          "key": "base",
+          "readonly": "on"
+        },
+        {
+          "label": "Сложность проверки",
+          "type": "textfield",
+          "layout": {
+            "row": "Row_0el5fhk",
+            "columns": null
+          },
+          "id": "Field_1kf4qwe",
+          "key": "difficulty",
+          "readonly": "on"
+        },
+        {
+          "label": "Количество кубиков для броска",
+          "type": "textfield",
+          "layout": {
+            "row": "Row_0el5fhk",
+            "columns": null
+          },
+          "id": "Field_01s1zo7",
+          "key": "availableDices",
+          "properties": {},
+          "readonly": "on"
+        }
+      ],
+      "showOutline": true,
+      "type": "group",
       "layout": {
-        "row": "Row_10g4bqa",
+        "row": "Row_0dnt0l6",
         "columns": null
       },
-      "id": "Field_03z63qo",
-      "key": "lst_ally"
-    },
-    {
-      "label": "Количество кубиков для броска",
-      "type": "textfield",
-      "layout": {
-        "row": "Row_0njq8wk",
-        "columns": null
-      },
-      "id": "Field_01s1zo7",
-      "key": "availableDices",
-      "properties": {},
-      "readonly": "on"
-    },
-    {
-      "label": "Сложность проверки",
-      "type": "textfield",
-      "layout": {
-        "row": "Row_0o8bpcn",
-        "columns": null
-      },
-      "id": "Field_1kf4qwe",
-      "key": "difficulty",
-      "readonly": "on"
-    },
-    {
-      "label": "Базовое значение навыка",
-      "type": "textfield",
-      "layout": {
-        "row": "Row_1rqwotb",
-        "columns": null
-      },
-      "id": "Field_0rd1phk",
-      "key": "base",
-      "readonly": false
+      "id": "Field_0li03hd"
     },
     {
       "label": "Применить",
       "type": "checkbox",
       "layout": {
-        "row": "Row_0cu4bpl",
+        "row": "Row_0hhc6qo",
         "columns": null
       },
       "id": "Field_0zak0de",
