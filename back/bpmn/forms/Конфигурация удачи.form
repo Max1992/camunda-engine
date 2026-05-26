@@ -111,7 +111,11 @@
             "columns": null
           },
           "id": "Field_1jbugbp",
-          "key": "wasteOfClueCount"
+          "key": "wasteOfClueCount",
+          "validate": {
+            "min": "0",
+            "max": "=availableClue"
+          }
         }
       ],
       "showOutline": true,

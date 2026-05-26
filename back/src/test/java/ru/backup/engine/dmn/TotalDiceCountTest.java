@@ -47,10 +47,10 @@ public class TotalDiceCountTest {
    * */
   private static Stream<Arguments> provideTestData() {
     return Stream.of(
-        arguments(2, 1, 1, 2),
+        arguments(2, 1, -1, 2),
         arguments(1, 2, 0, 3),
-        arguments(0, 0, 1, 0),
-        arguments(2, 2, 4, 0)
+        arguments(0, 0, -1, 0),
+        arguments(2, 2, -4, 0)
     );
   }
 
