@@ -81,6 +81,7 @@ public class LuckConfigurationTest {
         withVariables(
             "playerId", "player_0001",
             "difficulty", 1,
+            "mythBonus", 0,
             "assignee", "admin",
             "targetService", "dummy"
         )

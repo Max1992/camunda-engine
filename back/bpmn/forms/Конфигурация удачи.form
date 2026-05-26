@@ -10,6 +10,40 @@
       "id": "Field_1yehwrc"
     },
     {
+      "label": "Миф",
+      "components": [
+        {
+          "label": "Миф",
+          "type": "textfield",
+          "layout": {
+            "row": "Row_12u0l27",
+            "columns": null
+          },
+          "id": "Field_1764nso",
+          "key": "mythId",
+          "readonly": true
+        },
+        {
+          "label": "Бонус/Штраф",
+          "type": "number",
+          "layout": {
+            "row": "Row_12u0l27",
+            "columns": null
+          },
+          "id": "Field_0evdi7f",
+          "key": "mythBonus",
+          "readonly": "on"
+        }
+      ],
+      "showOutline": true,
+      "type": "group",
+      "layout": {
+        "row": "Row_127v8tt",
+        "columns": null
+      },
+      "id": "Field_1iw1o5v"
+    },
+    {
       "label": "Союзники /Навыки",
       "components": [
         {

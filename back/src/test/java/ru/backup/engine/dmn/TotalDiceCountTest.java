@@ -43,23 +43,26 @@ public class TotalDiceCountTest {
    *  base         - базовое значение
    *  dices        - количество кубиков с учетом бонусов (как временных так и постоянных)
    *  difficulty   - сложность проверки
+   *  mythBonus    - бонус/штраф мифа
    *    ожидаемое значение
    * */
   private static Stream<Arguments> provideTestData() {
     return Stream.of(
-        arguments(2, 1, -1, 2),
-        arguments(1, 2, 0, 3),
-        arguments(0, 0, -1, 0),
-        arguments(2, 2, -4, 0)
+        arguments(2, 1, -1, 0, 2),
+        arguments(1, 2, 0, 0, 3),
+        arguments(0, 0, -1, 0, -1),
+        arguments(2, 2, -4, 0, 0),
+        arguments(2, 0, -1, -1, 0)
     );
   }
 
-  @ParameterizedTest(name = "{index} ==> База+Кубики-Сложность: {0}+{1}-{2} -> Ожидаем: {3}")
+  @ParameterizedTest(name = "{index} ==> База+Кубики-Сложность: {0}+{1}+{2}+{3} -> Ожидаем: {4}")
   @MethodSource("provideTestData")
   public void testTotalDiceCount(
       int base,
       int dices,
       int difficulty,
+      int mythBonus,
       int expected
   ) throws FileNotFoundException {
     // Деплоим DMN (достаточно сделать один раз перед запуском параметров)
@@ -69,7 +72,8 @@ public class TotalDiceCountTest {
     Map<String, Object> variables = Variables.createVariables()
         .putValue("base", base)
         .putValue("dices", dices)
-        .putValue("difficulty", difficulty);
+        .putValue("difficulty", difficulty)
+        .putValue("mythBonus", mythBonus);
 
     // Вычисляем таблицу решений
     var evaluated = decisionService().evaluateDecisionByKey(DMN_KEY)

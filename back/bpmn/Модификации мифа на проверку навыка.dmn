@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:camunda="http://camunda.org/schema/1.0/dmn" id="Definitions_1brkfea" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.37.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.23.0">
+  <decision id="Decision_0nktais" name="Модификации мифа на проверку навыка" camunda:historyTimeToLive="180">
+    <decisionTable id="DecisionTable_1y72wjb" hitPolicy="FIRST">
+      <input id="Input_1" label="skillType">
+        <inputExpression id="InputExpression_1" typeRef="string">
+          <text>skillType</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1i1sq3e" label="mythId">
+        <inputExpression id="LiteralExpression_1hmabu3" typeRef="string">
+          <text>mythId</text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" label="mythBonus" name="mythBonus" typeRef="integer" />
+      <rule id="DecisionRule_1uoetct">
+        <inputEntry id="UnaryTests_0lv3ix5">
+          <text>"LUCK"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1xcynbk">
+          <text>"MYTH_00007"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_07c3rzo">
+          <text>-1</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_02ygn9z">
+        <inputEntry id="UnaryTests_14mh6zs">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ulwb2w">
+          <text>-</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1dsmk55">
+          <text>0</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="Decision_0nktais">
+        <dc:Bounds height="80" width="180" x="160" y="100" />
+      </dmndi:DMNShape>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>
