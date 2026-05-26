@@ -36,7 +36,6 @@
           <camunda:inputParameter name="difficulty">${difficulty}</camunda:inputParameter>
           <camunda:inputParameter name="skills">${skills}</camunda:inputParameter>
           <camunda:inputParameter name="ally">${ally}</camunda:inputParameter>
-          <camunda:inputParameter name="l_ally">${''}</camunda:inputParameter>
           <camunda:inputParameter name="availableClue">${availableClue}</camunda:inputParameter>
           <camunda:outputParameter name="approved">${approved}</camunda:outputParameter>
           <camunda:outputParameter name="wasteOfClueCount">${wasteOfClueCount}</camunda:outputParameter>

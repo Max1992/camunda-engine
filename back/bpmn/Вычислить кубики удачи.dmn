@@ -13,8 +13,8 @@
         </inputExpression>
       </input>
       <input id="InputClause_1wde954" label="wasteOfClueCount">
-        <inputExpression id="LiteralExpression_1l9kovz" typeRef="integer">
-          <text>wasteOfClueCount</text>
+        <inputExpression id="LiteralExpression_1l9kovz" typeRef="boolean">
+          <text>wasteOfClueCount&gt;0</text>
         </inputExpression>
       </input>
       <output id="Output_1" label="dices" name="dices" typeRef="integer" />
@@ -32,20 +32,6 @@
           <text>wasteOfClueCount</text>
         </outputEntry>
       </rule>
-      <rule id="DecisionRule_0earopo">
-        <inputEntry id="UnaryTests_01wkmn7">
-          <text>list contains(skills, "SKILL_00005")</text>
-        </inputEntry>
-        <inputEntry id="UnaryTests_0lmnfw3">
-          <text>-</text>
-        </inputEntry>
-        <inputEntry id="UnaryTests_1jyvyuo">
-          <text>wasteOfClueCount &gt; 0</text>
-        </inputEntry>
-        <outputEntry id="LiteralExpression_1gjfqpx">
-          <text>wasteOfClueCount</text>
-        </outputEntry>
-      </rule>
       <rule id="DecisionRule_1cwnjf9">
         <inputEntry id="UnaryTests_0cpvcwc">
           <text>list contains(skills, "SKILL_00005")</text>
@@ -58,6 +44,20 @@
         </inputEntry>
         <outputEntry id="LiteralExpression_121a957">
           <text>1</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0earopo">
+        <inputEntry id="UnaryTests_01wkmn7">
+          <text>list contains(skills, "SKILL_00005")</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0lmnfw3">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1jyvyuo">
+          <text>true</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1gjfqpx">
+          <text>wasteOfClueCount</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_1clulp2">
