@@ -1,13 +1,24 @@
 {
   "components": [
     {
-      "text": "# Конфигурация проверки удачи",
+      "text": "# Конфигурация проверки",
       "type": "text",
+      "layout": {
+        "row": "Row_1vh607i",
+        "columns": 12
+      },
+      "id": "Field_1yehwrc"
+    },
+    {
+      "label": "",
+      "type": "textfield",
       "layout": {
         "row": "Row_1vh607i",
         "columns": null
       },
-      "id": "Field_1yehwrc"
+      "id": "Field_0n6y1un",
+      "key": "skillType",
+      "readonly": "on"
     },
     {
       "label": "Миф",

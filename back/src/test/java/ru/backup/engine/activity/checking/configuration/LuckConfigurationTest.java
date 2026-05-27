@@ -28,6 +28,7 @@ import ru.backup.engine.TestUtils;
 import ru.backup.engine.activity.ProcessConsts;
 import ru.backup.engine.delegates.form.embedded.ConvertInputMapListener;
 import ru.backup.engine.delegates.form.embedded.ConvertOutputMapListener;
+import ru.backup.engine.enums.SkillType;
 
 /**
  * Простая проверка конфигурации удачи.
@@ -81,6 +82,7 @@ public class LuckConfigurationTest {
         withVariables(
             "playerId", "player_0001",
             "difficulty", 1,
+            "skillType", SkillType.LUCK.name(),
             "mythBonus", 0,
             "assignee", "admin",
             "targetService", "dummy"
