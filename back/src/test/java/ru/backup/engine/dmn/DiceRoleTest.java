@@ -37,7 +37,7 @@ public class DiceRoleTest {
       .build();
 
   private static final String DMN_KEY = "Decision_1ryv9go"; // ID таблицы из свойств DMN
-  private static final String DMN_FILE_NAME = "Проверка броска кубиков.dmn";
+  private static final String DMN_FILE_NAME = "Decision_1ryv9go.dmn";
 
   @AfterEach
   void tearDown() {

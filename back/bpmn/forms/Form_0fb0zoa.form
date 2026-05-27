@@ -1,0 +1,101 @@
+{
+  "components": [
+    {
+      "text": "# Результат проверки",
+      "type": "text",
+      "layout": {
+        "row": "Row_0ddyl0m",
+        "columns": null
+      },
+      "id": "Field_0tzfweg"
+    },
+    {
+      "label": "",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0ddyl0m",
+        "columns": null
+      },
+      "id": "Field_09us8en",
+      "key": "skillType",
+      "readonly": "on"
+    },
+    {
+      "label": "Игрок",
+      "components": [
+        {
+          "label": "Статус",
+          "type": "textfield",
+          "layout": {
+            "row": "Row_12j73u3",
+            "columns": null
+          },
+          "id": "Field_0hrmk91",
+          "key": "playerStatus",
+          "readonly": "on"
+        }
+      ],
+      "showOutline": true,
+      "type": "group",
+      "layout": {
+        "row": "Row_1eh59tc",
+        "columns": null
+      },
+      "id": "Field_1i9btcr"
+    },
+    {
+      "label": "Бросок",
+      "components": [
+        {
+          "label": "Необходимо успехов",
+          "type": "number",
+          "layout": {
+            "row": "Row_0b5yc8l",
+            "columns": null
+          },
+          "id": "Field_1pmpgg5",
+          "key": "requiredSuccesses",
+          "readonly": true
+        },
+        {
+          "label": "Выпали кубики",
+          "type": "textfield",
+          "layout": {
+            "row": "Row_0b5yc8l",
+            "columns": null
+          },
+          "id": "Field_0attdiu",
+          "key": "lst_diceRolls",
+          "readonly": "on"
+        },
+        {
+          "label": "Результат броска",
+          "type": "textfield",
+          "layout": {
+            "row": "Row_0b5yc8l",
+            "columns": null
+          },
+          "id": "Field_1to8vbb",
+          "key": "encounterResult",
+          "readonly": "on"
+        }
+      ],
+      "showOutline": true,
+      "type": "group",
+      "layout": {
+        "row": "Row_1gslals",
+        "columns": null
+      },
+      "id": "Field_03ml88y"
+    }
+  ],
+  "type": "default",
+  "id": "Form_0fb0zoa",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.37.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.23.0",
+  "schemaVersion": 18
+}

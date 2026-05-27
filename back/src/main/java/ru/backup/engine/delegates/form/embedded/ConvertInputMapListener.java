@@ -3,6 +3,7 @@ package ru.backup.engine.delegates.form.embedded;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import org.camunda.bpm.engine.delegate.DelegateTask;
 import org.springframework.stereotype.Component;
 import ru.backup.engine.delegates.DelegateExecutionHandler;
@@ -16,11 +17,17 @@ public class ConvertInputMapListener implements TaskListener {
 
     variables.forEach((key, value) -> {
       if (value instanceof List<?>) {
-        List<String> list = new ArrayList<>((List) value);
+        var list = new ArrayList<>((List) value);
         // важно удалить переменную
         execution.removeVariable(key);
         // установить новую переменную для списка
-        execution.setVariable(FormVariableUtils.setVariableNameAsList(key), String.join(", ", list));
+
+        String result = list.stream()
+            .map(item -> item == null ? "" : item.toString())
+            .collect(Collectors.joining(", "))
+            .toString();
+
+        execution.setVariable(FormVariableUtils.setVariableNameAsList(key), result);
       }
     });
   }
