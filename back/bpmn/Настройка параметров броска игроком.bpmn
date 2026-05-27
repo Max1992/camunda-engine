@@ -61,9 +61,6 @@
       <bpmn:outgoing>Flow_17ahjbu</bpmn:outgoing>
       <bpmn:outgoing>Flow_0rs59z7</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:endEvent id="Event_1qzdb7r">
-      <bpmn:incoming>Flow_17ahjbu</bpmn:incoming>
-    </bpmn:endEvent>
     <bpmn:sequenceFlow id="Flow_0rs59z7" name="Уточнение" sourceRef="Gateway_1ygrtu1" targetRef="Gateway_02i2r95">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{!approved}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
@@ -73,7 +70,14 @@
     <bpmn:sequenceFlow id="Flow_1jixsqb" sourceRef="Activity_1oaovv0" targetRef="Activity_14z645t" />
     <bpmn:sequenceFlow id="Flow_1h8oyr7" sourceRef="Activity_14z645t" targetRef="Activity_0849wro" />
     <bpmn:sequenceFlow id="Flow_1v29zy7" sourceRef="Activity_0849wro" targetRef="Gateway_1ygrtu1" />
-    <bpmn:sequenceFlow id="Flow_17ahjbu" sourceRef="Gateway_1ygrtu1" targetRef="Event_1qzdb7r" />
+    <bpmn:sequenceFlow id="Flow_17ahjbu" name="Упаковка переменных" sourceRef="Gateway_1ygrtu1" targetRef="Event_1qzdb7r">
+      <bpmn:extensionElements>
+        <camunda:executionListener expression="${execution.setVariable(&#34;configuration&#34;, execution.getVariables())}" event="take" />
+      </bpmn:extensionElements>
+    </bpmn:sequenceFlow>
+    <bpmn:endEvent id="Event_1qzdb7r">
+      <bpmn:incoming>Flow_17ahjbu</bpmn:incoming>
+    </bpmn:endEvent>
   </bpmn:process>
   <bpmn:process id="Process_16kgcjf" name="Проверить навык" isExecutable="true" camunda:historyTimeToLive="180">
     <bpmn:businessRuleTask id="Activity_14wucki" name="Определить параметры проверки навыка" camunda:resultVariable="result" camunda:decisionRef="Decision_1b8f3ma" camunda:mapDecisionResult="singleResult">
@@ -104,8 +108,7 @@
       <bpmn:extensionElements>
         <camunda:in variables="all" />
         <camunda:in businessKey="#{execution.processBusinessKey}" />
-        <camunda:out source="availableDices" target="availableDices" />
-        <camunda:out source="wasteOfClueCount" target="wasteOfClueCount" />
+        <camunda:out source="configuration" target="configuration" />
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_16hri8u</bpmn:incoming>
       <bpmn:outgoing>Flow_1q04liy</bpmn:outgoing>
@@ -143,7 +146,7 @@
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_0l7f74z">
       <bpmndi:BPMNShape id="Participant_0i7lxsh_di" bpmnElement="Participant_0i7lxsh" isHorizontal="true">
-        <dc:Bounds x="310" y="80" width="1020" height="230" />
+        <dc:Bounds x="310" y="80" width="1040" height="230" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Gateway_02i2r95_di" bpmnElement="Gateway_02i2r95" isMarkerVisible="true">
@@ -172,7 +175,7 @@
         <dc:Bounds x="1145" y="195" width="50" height="50" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_1qzdb7r_di" bpmnElement="Event_1qzdb7r">
-        <dc:Bounds x="1252" y="202" width="36" height="36" />
+        <dc:Bounds x="1292" y="202" width="36" height="36" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_0rs59z7_di" bpmnElement="Flow_0rs59z7">
         <di:waypoint x="1170" y="195" />
@@ -209,7 +212,10 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_17ahjbu_di" bpmnElement="Flow_17ahjbu">
         <di:waypoint x="1195" y="220" />
-        <di:waypoint x="1252" y="220" />
+        <di:waypoint x="1292" y="220" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1211" y="181" width="65" height="27" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Participant_19xmtkv_di" bpmnElement="Participant_19xmtkv" isHorizontal="true">
         <dc:Bounds x="160" y="410" width="950" height="250" />
