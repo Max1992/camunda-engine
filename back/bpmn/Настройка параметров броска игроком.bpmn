@@ -251,6 +251,7 @@
           <camunda:inputParameter name="encounterResult">${encounterResult}</camunda:inputParameter>
           <camunda:inputParameter name="diceRolls">${diceRolls}</camunda:inputParameter>
           <camunda:inputParameter name="requiredSuccesses">${context.requiredSuccesses}</camunda:inputParameter>
+          <camunda:inputParameter name="simpleItem">${playerProfile.simpleItem}</camunda:inputParameter>
           <camunda:inputParameter name="playerStatus">${playerProfile.playerStatus}</camunda:inputParameter>
         </camunda:inputOutput>
         <camunda:taskListener delegateExpression="${convertInputMap}" event="create" id="" />
@@ -402,7 +403,7 @@
         <di:waypoint x="1070" y="420" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Participant_19xmtkv_di" bpmnElement="Participant_19xmtkv" isHorizontal="true">
-        <dc:Bounds x="130" y="870" width="1858" height="320" />
+        <dc:Bounds x="130" y="870" width="1740" height="280" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1umzgib_di" bpmnElement="Activity_13t8hkj">
