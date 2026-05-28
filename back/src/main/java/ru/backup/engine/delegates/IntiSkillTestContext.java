@@ -17,7 +17,8 @@ public class IntiSkillTestContext extends JavaDelegateHandler {
         execution.getVariableLocal("difficulty"),
         execution.getVariableLocal("playerId"),
         execution.getVariableLocal("mythId"),
-        execution.getVariableLocal("mythBonus")
+        execution.getVariableLocal("mythBonus"),
+        execution.getVariableLocal("requiredSuccesses")
     );
 
     ObjectMapper mapper = new ObjectMapper();
@@ -31,7 +32,8 @@ public class IntiSkillTestContext extends JavaDelegateHandler {
       int difficulty,
       String playerId,
       String mythId,
-      int mythBonus)
+      int mythBonus,
+      int requiredSuccesses)
   {
     SkillTestContext context = new SkillTestContext();
     context.wasteOfClueCount = 0;
@@ -40,6 +42,7 @@ public class IntiSkillTestContext extends JavaDelegateHandler {
     context.playerId = playerId;
     context.mythId = mythId;
     context.mythBonus = mythBonus;
+    context.requiredSuccesses = requiredSuccesses;
     return context;
   }
 }
