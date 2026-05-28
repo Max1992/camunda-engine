@@ -66,9 +66,14 @@
       <bpmn:outgoing>Flow_0pdo0pe</bpmn:outgoing>
     </bpmn:userTask>
     <bpmn:scriptTask id="Activity_118m7xo" scriptFormat="juel" camunda:resultVariable="base">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="skillName">${context.skillType}</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
       <bpmn:incoming>Flow_1jixsqb</bpmn:incoming>
       <bpmn:outgoing>Flow_0pexrr6</bpmn:outgoing>
-      <bpmn:script>#{playerProfile.luck}</bpmn:script>
+      <bpmn:script>#{playerProfile[skillName.toLowerCase()]}</bpmn:script>
     </bpmn:scriptTask>
     <bpmn:scriptTask id="Activity_0zpw6bi" scriptFormat="juel" camunda:resultVariable="base">
       <bpmn:incoming>Flow_1h9fvnk</bpmn:incoming>
