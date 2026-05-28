@@ -265,6 +265,7 @@
           <camunda:inputParameter name="simpleItem">${playerProfile.simpleItem}</camunda:inputParameter>
           <camunda:inputParameter name="base">${context.base}</camunda:inputParameter>
           <camunda:inputParameter name="wasteOfClueCount">${context.wasteOfClueCount}</camunda:inputParameter>
+          <camunda:inputParameter name="mythId">${context.mythId}</camunda:inputParameter>
           <camunda:outputParameter name="approved">${approved}</camunda:outputParameter>
           <camunda:outputParameter name="wasteOfClueCount">${wasteOfClueCount}</camunda:outputParameter>
         </camunda:inputOutput>
