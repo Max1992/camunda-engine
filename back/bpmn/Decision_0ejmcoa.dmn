@@ -1,28 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:camunda="http://camunda.org/schema/1.0/dmn" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" id="Definitions_1sblg18" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.37.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.23.0">
   <decision id="Decision_0ejmcoa" name="Вычислить кубики удачи" camunda:historyTimeToLive="180">
-    <decisionTable id="DecisionTable_011xxmi" hitPolicy="COLLECT" aggregation="SUM">
-      <input id="Input_1" label="skills" biodi:width="293">
+    <decisionTable id="DecisionTable_011xxmi" hitPolicy="COLLECT" aggregation="SUM" biodi:annotationsWidth="400">
+      <input id="Input_1" label="skills" biodi:width="208">
         <inputExpression id="InputExpression_1" typeRef="string">
           <text>skills</text>
         </inputExpression>
       </input>
-      <input id="InputClause_04n96e1" label="ally" biodi:width="331">
+      <input id="InputClause_04n96e1" label="ally" biodi:width="150">
         <inputExpression id="LiteralExpression_05to01p" typeRef="string">
           <text>ally</text>
         </inputExpression>
       </input>
-      <input id="InputClause_1wde954" label="wasteOfClueCount">
+      <input id="InputClause_0bi8rw1" label="simpleItem">
+        <inputExpression id="LiteralExpression_1viyuio" typeRef="string">
+          <text>simpleItem</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1wde954" label="wasteOfClueCount" biodi:width="150">
         <inputExpression id="LiteralExpression_1l9kovz" typeRef="boolean">
           <text>wasteOfClueCount&gt;0</text>
         </inputExpression>
       </input>
-      <output id="Output_1" label="dices" name="dices" typeRef="integer" />
+      <output id="Output_1" label="dices" name="dices" typeRef="integer" biodi:width="150" />
       <rule id="DecisionRule_1f5plpw">
+        <description>Потраченная улика дает +1 кубик всегда</description>
         <inputEntry id="UnaryTests_0t7t5va">
           <text>-</text>
         </inputEntry>
         <inputEntry id="UnaryTests_0ta45s0">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_16lj2a4">
           <text>-</text>
         </inputEntry>
         <inputEntry id="UnaryTests_071gpun">
@@ -33,24 +42,32 @@
         </outputEntry>
       </rule>
       <rule id="DecisionRule_1cwnjf9">
+        <description>Навык Удача +1</description>
         <inputEntry id="UnaryTests_0cpvcwc">
           <text>list contains(skills, "SKILL_00005")</text>
         </inputEntry>
         <inputEntry id="UnaryTests_1r33ru8">
           <text>-</text>
         </inputEntry>
+        <inputEntry id="UnaryTests_0speqtj">
+          <text>-</text>
+        </inputEntry>
         <inputEntry id="UnaryTests_1t3f8zo">
-          <text></text>
+          <text>-</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_121a957">
           <text>1</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_0earopo">
+        <description>Когда тратите улику, чтобы получить бонус к проверке Удачи, добавляйте еще один бонусный кубик.</description>
         <inputEntry id="UnaryTests_01wkmn7">
           <text>list contains(skills, "SKILL_00005")</text>
         </inputEntry>
         <inputEntry id="UnaryTests_0lmnfw3">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0tgeb49">
           <text>-</text>
         </inputEntry>
         <inputEntry id="UnaryTests_1jyvyuo">
@@ -61,45 +78,57 @@
         </outputEntry>
       </rule>
       <rule id="DecisionRule_1clulp2">
+        <description>Анна Каслоу</description>
         <inputEntry id="UnaryTests_0nvy2th">
           <text>-</text>
         </inputEntry>
         <inputEntry id="UnaryTests_1pzdwkf">
           <text>list contains(ally, "ALLY_00001")</text>
         </inputEntry>
+        <inputEntry id="UnaryTests_1xhfbuc">
+          <text>-</text>
+        </inputEntry>
         <inputEntry id="UnaryTests_15xo5qo">
-          <text></text>
+          <text>-</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_0mxw7sj">
           <text>2</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_14z65g3">
+        <description>Ричард Аптон Пикмэн</description>
         <inputEntry id="UnaryTests_0015maq">
           <text>-</text>
         </inputEntry>
         <inputEntry id="UnaryTests_0lxbro2">
           <text>list contains(ally, "ALLY_00006")</text>
         </inputEntry>
+        <inputEntry id="UnaryTests_1lwcjyy">
+          <text>-</text>
+        </inputEntry>
         <inputEntry id="UnaryTests_0sscqxd">
-          <text></text>
+          <text>-</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_0qepqem">
           <text>1</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_1ka3ctr">
+        <description>Фонарь</description>
         <inputEntry id="UnaryTests_07jv0qq">
           <text>-</text>
         </inputEntry>
         <inputEntry id="UnaryTests_15prbhp">
           <text>-</text>
         </inputEntry>
+        <inputEntry id="UnaryTests_0d3x34r">
+          <text>list contains(simpleItem, "ITEM_00018")</text>
+        </inputEntry>
         <inputEntry id="UnaryTests_12lzvpo">
           <text>-</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_0mzgvwm">
-          <text>0</text>
+          <text>1</text>
         </outputEntry>
       </rule>
     </decisionTable>

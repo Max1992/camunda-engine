@@ -70,6 +70,7 @@ public class Process_0hnbcs4_Test {
     playerProfile.put("luck", 2);
     playerProfile.put("skill", Collections.EMPTY_LIST);
     playerProfile.put("ally", Collections.EMPTY_LIST);
+    playerProfile.put("simpleItem", Collections.EMPTY_LIST);
 
     ProcessInstance pi = runtimeService().startProcessInstanceByKey(ProcessConsts.LUCK_CONFIGURATION_PROCESS_KEY,
         withVariables(
