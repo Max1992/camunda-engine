@@ -3,7 +3,7 @@
   <decision id="totalDiceCount" name="Вычислить итоговое количество кубиков" camunda:historyTimeToLive="180">
     <variable id="InformationItem_0ffvbn2" name="Вычислить итоговое количество кубиков" typeRef="integer" />
     <literalExpression id="LiteralExpression_0uboxbo" expressionLanguage="juel">
-      <text>${base + dices + difficulty + mythBonus}</text>
+      <text>${base + dices + context.difficulty + context.mythBonus}</text>
     </literalExpression>
   </decision>
   <dmndi:DMNDI>
