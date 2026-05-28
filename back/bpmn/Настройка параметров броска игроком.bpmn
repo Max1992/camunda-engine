@@ -164,7 +164,7 @@
     <bpmn:serviceTask id="Activity_1w80ha9" name="Бросить кубики" camunda:delegateExpression="${rollDices}">
       <bpmn:extensionElements>
         <camunda:inputOutput>
-          <camunda:inputParameter name="availableDices">${configuration.availableDices}</camunda:inputParameter>
+          <camunda:inputParameter name="availableDices">${context.availableDices}</camunda:inputParameter>
           <camunda:outputParameter name="diceRolls">${diceRolls}</camunda:outputParameter>
         </camunda:inputOutput>
       </bpmn:extensionElements>
@@ -174,21 +174,21 @@
     <bpmn:businessRuleTask id="Activity_0fmtqo1" name="Проверка броска кубиков" camunda:resultVariable="encounterResult" camunda:decisionRef="Decision_1ryv9go" camunda:mapDecisionResult="singleEntry">
       <bpmn:extensionElements>
         <camunda:inputOutput>
-          <camunda:inputParameter name="playerStatus">${playerStatus}</camunda:inputParameter>
+          <camunda:inputParameter name="playerStatus">${playerProfile.playerStatus}</camunda:inputParameter>
           <camunda:inputParameter name="diceRolls">${diceRolls}</camunda:inputParameter>
-          <camunda:inputParameter name="requiredSuccesses">${requiredSuccesses}</camunda:inputParameter>
+          <camunda:inputParameter name="requiredSuccesses">${context.requiredSuccesses}</camunda:inputParameter>
         </camunda:inputOutput>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_10cg59p</bpmn:incoming>
       <bpmn:outgoing>Flow_0ksr2hw</bpmn:outgoing>
     </bpmn:businessRuleTask>
-    <bpmn:userTask id="Activity_0dmtwt0" name="Отображение результат броска кубика" camunda:formRef="Form_0fb0zoa" camunda:formRefBinding="latest" camunda:assignee="${assignee}">
+    <bpmn:userTask id="Activity_0dmtwt0" name="Отображение результат броска кубика" camunda:formRef="Form_0fb0zoa" camunda:formRefBinding="latest" camunda:assignee="${playerProfile.assignee}">
       <bpmn:extensionElements>
         <camunda:inputOutput>
-          <camunda:inputParameter name="skillType">${skillType}</camunda:inputParameter>
+          <camunda:inputParameter name="skillType">${context.skillType}</camunda:inputParameter>
           <camunda:inputParameter name="encounterResult">${encounterResult}</camunda:inputParameter>
           <camunda:inputParameter name="diceRolls">${diceRolls}</camunda:inputParameter>
-          <camunda:inputParameter name="requiredSuccesses">${requiredSuccesses}</camunda:inputParameter>
+          <camunda:inputParameter name="requiredSuccesses">${context.requiredSuccesses}</camunda:inputParameter>
           <camunda:inputParameter name="playerStatus">${playerProfile.playerStatus}</camunda:inputParameter>
         </camunda:inputOutput>
         <camunda:taskListener delegateExpression="${convertInputMap}" event="create" id="" />
