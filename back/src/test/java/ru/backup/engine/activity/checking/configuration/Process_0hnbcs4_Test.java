@@ -1,29 +1,24 @@
 package ru.backup.engine.activity.checking.configuration;
 
 import static org.camunda.bpm.engine.test.assertions.bpmn.BpmnAwareTests.assertThat;
+import static org.camunda.bpm.engine.test.assertions.bpmn.BpmnAwareTests.historyService;
 import static org.camunda.bpm.engine.test.assertions.bpmn.BpmnAwareTests.runtimeService;
-import static org.camunda.bpm.engine.test.assertions.bpmn.BpmnAwareTests.taskService;
 import static org.camunda.bpm.engine.test.assertions.bpmn.BpmnAwareTests.withVariables;
-import static ru.backup.engine.activity.CallConsts.*;
-import static ru.backup.engine.delegates.Consts.*;
 
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
-import org.camunda.bpm.engine.delegate.JavaDelegate;
+import org.assertj.core.api.Assertions;
 import org.camunda.bpm.engine.impl.cfg.StandaloneInMemProcessEngineConfiguration;
 import org.camunda.bpm.engine.runtime.ProcessInstance;
-import org.camunda.bpm.engine.task.Task;
 import org.camunda.bpm.engine.test.junit5.ProcessEngineExtension;
 import org.camunda.bpm.engine.test.mock.Mocks;
-import org.camunda.bpm.extension.mockito.CamundaMockito;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
-import org.mockito.Mockito;
 import ru.backup.engine.TestUtils;
 import ru.backup.engine.activity.ProcessConsts;
 import ru.backup.engine.delegates.form.embedded.ConvertInputMapListener;
@@ -31,10 +26,10 @@ import ru.backup.engine.delegates.form.embedded.ConvertOutputMapListener;
 import ru.backup.engine.enums.SkillType;
 
 /**
- * Простая проверка конфигурации удачи.
- * Только чтобы убедиться что процесс идет по основным веткам.
+ * Вычислить доступное количество кубиков для броска
+ * ProcessId: Process_0hnbcs4
  * */
-public class LuckConfigurationTest {
+public class Process_0hnbcs4_Test {
   @RegisterExtension
   public static ProcessEngineExtension extension = ProcessEngineExtension.builder()
       .useProcessEngine(new StandaloneInMemProcessEngineConfiguration()
@@ -58,57 +53,49 @@ public class LuckConfigurationTest {
 
   @BeforeEach
   public void setUp() throws Exception {
-    JavaDelegate getLuckConfigurationMock = Mockito.mock(JavaDelegate.class);
-
-    Mocks.register(SERVICE_ROUTE_TASK, getLuckConfigurationMock);
     Mocks.register("convertInputMap", new ConvertInputMapListener());
     Mocks.register("convertOutputMap", new ConvertOutputMapListener());
-
-    Mockito.doAnswer(invocation -> {
-      var execution = (org.camunda.bpm.engine.delegate.DelegateExecution) invocation.getArgument(0);
-      execution.setVariableLocal("skills", new ArrayList<>(List.of("SKILL_00005")));
-      execution.setVariableLocal("ally", new ArrayList<>(List.of("ALLY_00006")));
-      execution.setVariableLocal("base", 2);
-      execution.setVariableLocal("availableClue", 2);
-      execution.setVariableLocal("wasteOfClueCount", 0);
-      execution.setVariableLocal("decisionRuleId", "Decision_0ejmcoa"); // задается в моделере
-      return null;
-    }).when(getLuckConfigurationMock).execute(Mockito.any());
   }
 
   @Test
   public void testLuckConfigration_ShouldGoThrough() {
+
+    Map<String, Object> context = new HashMap<>();
+    context.put("skillType", SkillType.LUCK.name());
+    context.put("mythBonus", 0);
+    context.put("difficulty", 0);
+    context.put("wasteOfClueCount", 0);
+
+    Map<String, Object> playerProfile = new HashMap<>();
+    playerProfile.put("luck", 2);
+    playerProfile.put("skill", Collections.EMPTY_LIST);
+    playerProfile.put("ally", Collections.EMPTY_LIST);
+
     ProcessInstance pi = runtimeService().startProcessInstanceByKey(ProcessConsts.LUCK_CONFIGURATION_PROCESS_KEY,
         withVariables(
-            "playerId", "player_0001",
-            "difficulty", 1,
-            "skillType", SkillType.LUCK.name(),
-            "mythBonus", 0,
-            "assignee", "admin",
-            "targetService", "dummy"
+            "context", context,
+            "playerProfile", playerProfile
         )
     );
 
     assertThat(pi).hasPassed(
-        "Activity_1djzwns" // Получить базовые характеристики проверки
+        "Gateway_0ytaopr", // Получить базовые характеристики проверки
+        "Activity_14z645t" // DMN Вычислить достпуное значение кубиков
     );
-
-    String userTaskId = "Activity_0849wro";
-
-    assertThat(pi).isWaitingAt(userTaskId);
-
-    Task task = taskService().createTaskQuery()
-        .processInstanceId(pi.getId())
-        .taskDefinitionKey(userTaskId)
-        .singleResult();
-
-    Map<String, Object> formVariables = Map.of(
-        "approved", true
-    );
-    taskService().complete(task.getId(), formVariables);
-
-    assertThat(pi).hasPassed("Gateway_1ygrtu1");
 
     assertThat(pi).isEnded();
+
+    Map<String, Object> outputVariables = historyService()
+        .createHistoricVariableInstanceQuery()
+        .processInstanceId(pi.getId())
+        .unlimitedList()
+        .stream()
+        .collect(java.util.stream.Collectors.toMap(
+            var -> var.getName(),
+            var -> var.getValue()
+        ));
+
+    int finalLuck = (int) outputVariables.get("availableDices");
+    Assertions.assertThat(finalLuck).isEqualTo(2);
   }
 }

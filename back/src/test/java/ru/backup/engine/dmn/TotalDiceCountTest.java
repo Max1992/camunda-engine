@@ -5,6 +5,7 @@ import static org.camunda.bpm.engine.test.assertions.bpmn.BpmnAwareTests.decisio
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 import java.io.FileNotFoundException;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Stream;
 import org.camunda.bpm.engine.impl.cfg.StandaloneInMemProcessEngineConfiguration;
@@ -68,12 +69,14 @@ public class TotalDiceCountTest {
     // Деплоим DMN (достаточно сделать один раз перед запуском параметров)
     TestUtils.deploy(DMN_FILE_NAME);
 
+    Map<String, Object> context = new HashMap<>();
+    context.put("difficulty", difficulty);
+    context.put("mythBonus", mythBonus);
     // Формируем переменные контекста игры
     Map<String, Object> variables = Variables.createVariables()
         .putValue("base", base)
         .putValue("dices", dices)
-        .putValue("difficulty", difficulty)
-        .putValue("mythBonus", mythBonus);
+        .putValue("context", context);
 
     // Вычисляем таблицу решений
     var evaluated = decisionService().evaluateDecisionByKey(DMN_KEY)
