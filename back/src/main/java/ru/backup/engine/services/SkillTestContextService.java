@@ -2,6 +2,7 @@ package ru.backup.engine.services;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 import org.springframework.stereotype.Service;
 import ru.backup.engine.enums.SkillType;
 import ru.backup.engine.models.SkillTestContext;
@@ -13,14 +14,13 @@ public class SkillTestContextService {
 
   public SkillTestContext init(SkillType skillType, int difficulty, String playerId,
       String mythId, int mythBonus, int requiredSuccesses) {
-    return map.computeIfAbsent(playerId, id -> initContext(skillType, difficulty, id, mythId, mythBonus, requiredSuccesses));
+
+    String contextId = UUID.randomUUID().toString();
+    return map.computeIfAbsent(contextId, id -> initContext(id, skillType, difficulty, playerId, mythId, mythBonus, requiredSuccesses));
   }
 
-  public void update(String playerId, SkillTestContext context) {
-    SkillTestContext ctx = map.get(playerId);
-    ctx.availableDices = context.availableDices;
-    ctx.base = context.base;
-    ctx.wasteOfClueCount = context.wasteOfClueCount;
+  public void update(String id, SkillTestContext context) {
+    map.put(id, context);
   }
 
   public void cleanup(String playerId) {
@@ -28,6 +28,7 @@ public class SkillTestContextService {
   }
 
   private SkillTestContext initContext(
+      String id,
       SkillType skillType,
       int difficulty,
       String playerId,
@@ -36,6 +37,7 @@ public class SkillTestContextService {
       int requiredSuccesses)
   {
     SkillTestContext context = new SkillTestContext();
+    context.id = id;
     context.wasteOfClueCount = 0;
     context.skillType = skillType;
     context.difficulty = difficulty;

@@ -19,15 +19,12 @@ public class UpdateSkillTestContext extends JavaDelegateHandler {
   protected void onExecute(DelegateExecutionHandler execution) throws Exception {
 
     ObjectMapper mapper = new ObjectMapper();
-    SkillTestContext context = mapper.convertValue(
-        execution.getVariableLocal("context"),
-        SkillTestContext.class
-    );
+    SkillTestContext context = mapper.convertValue(execution.getVariableLocal("context"), SkillTestContext.class);
 
     context.availableDices = execution.getVariableLocal("availableDices");
     context.base = execution.getVariableLocal("base");
 
     execution.setVariableLocal("context", mapper.convertValue(context, Map.class));
-    skillTestContextService.update(context.playerId, context);
+    skillTestContextService.update(context.id, context);
   }
 }

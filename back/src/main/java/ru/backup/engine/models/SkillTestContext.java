@@ -4,6 +4,8 @@ import ru.backup.engine.enums.SkillType;
 
 public class SkillTestContext {
 
+  public String id;
+
   public SkillTestContext() {}
 
   public int wasteOfClueCount;

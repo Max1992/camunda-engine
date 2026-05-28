@@ -30,7 +30,7 @@ public class SkillTestSpendClue extends JavaDelegateHandler {
 
     context.wasteOfClueCount += wasteOfClueCount;
     playerProfile.clue -= context.wasteOfClueCount;
-    skillTestContextService.update(context.playerId, context);
+    skillTestContextService.update(context.id, context);
     playerGameSheetProfileService.update(context.playerId, playerProfile);
 
     execution.setVariableLocal("context", mapper.convertValue(context, Map.class));

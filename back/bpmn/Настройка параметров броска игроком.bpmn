@@ -164,7 +164,7 @@
     <bpmn:sequenceFlow id="Flow_0g4ku5t" sourceRef="Gateway_1i6hntw" targetRef="Activity_1w80ha9" />
     <bpmn:sequenceFlow id="Flow_10cg59p" sourceRef="Activity_1w80ha9" targetRef="Activity_0fmtqo1" />
     <bpmn:sequenceFlow id="Flow_0ksr2hw" sourceRef="Activity_0fmtqo1" targetRef="Activity_0dmtwt0" />
-    <bpmn:sequenceFlow id="Flow_1pxe328" sourceRef="Activity_0dmtwt0" targetRef="Activity_01zwfvw" />
+    <bpmn:sequenceFlow id="Flow_1pxe328" sourceRef="Activity_0dmtwt0" targetRef="Event_0lk80kp" />
     <bpmn:sequenceFlow id="Flow_08pytv8" sourceRef="Activity_1pth818" targetRef="Gateway_1i6hntw" />
     <bpmn:sequenceFlow id="Flow_0cegpdr" sourceRef="Gateway_1i6hntw" targetRef="Activity_1jmexrl">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{spendClue}</bpmn:conditionExpression>
@@ -205,9 +205,6 @@
       <bpmn:incoming>Flow_1pq1pc7</bpmn:incoming>
       <bpmn:outgoing>Flow_08pytv8</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:endEvent id="Event_0lk80kp">
-      <bpmn:incoming>Flow_12ncslv</bpmn:incoming>
-    </bpmn:endEvent>
     <bpmn:serviceTask id="Activity_1jmexrl" name="Потратить улику" camunda:delegateExpression="${skillTestSpendClue}">
       <bpmn:extensionElements>
         <camunda:inputOutput>
@@ -261,16 +258,9 @@
       <bpmn:incoming>Flow_0ksr2hw</bpmn:incoming>
       <bpmn:outgoing>Flow_1pxe328</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:sequenceFlow id="Flow_12ncslv" sourceRef="Activity_01zwfvw" targetRef="Event_0lk80kp" />
-    <bpmn:serviceTask id="Activity_01zwfvw" name="Очистить контекст проверки" camunda:delegateExpression="${clearSkillTestContext}">
-      <bpmn:extensionElements>
-        <camunda:inputOutput>
-          <camunda:inputParameter name="playerId">${context.playerId}</camunda:inputParameter>
-        </camunda:inputOutput>
-      </bpmn:extensionElements>
+    <bpmn:endEvent id="Event_0lk80kp">
       <bpmn:incoming>Flow_1pxe328</bpmn:incoming>
-      <bpmn:outgoing>Flow_12ncslv</bpmn:outgoing>
-    </bpmn:serviceTask>
+    </bpmn:endEvent>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_0l7f74z">
@@ -445,9 +435,6 @@
         <dc:Bounds x="1120" y="920" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_1mug7er_di" bpmnElement="Event_0lk80kp">
-        <dc:Bounds x="1922" y="942" width="36" height="36" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1aa6je1_di" bpmnElement="Activity_1jmexrl">
         <dc:Bounds x="1120" y="1040" width="100" height="80" />
         <bpmndi:BPMNLabel />
@@ -467,9 +454,8 @@
         <dc:Bounds x="1650" y="920" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1hbo6vn_di" bpmnElement="Activity_01zwfvw">
-        <dc:Bounds x="1800" y="920" width="100" height="80" />
-        <bpmndi:BPMNLabel />
+      <bpmndi:BPMNShape id="Event_1mug7er_di" bpmnElement="Event_0lk80kp">
+        <dc:Bounds x="1812" y="942" width="36" height="36" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_1j62rkb_di" bpmnElement="Flow_1j62rkb">
         <di:waypoint x="615" y="960" />
@@ -514,7 +500,7 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1pxe328_di" bpmnElement="Flow_1pxe328">
         <di:waypoint x="1750" y="960" />
-        <di:waypoint x="1800" y="960" />
+        <di:waypoint x="1812" y="960" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_08pytv8_di" bpmnElement="Flow_08pytv8">
         <di:waypoint x="1220" y="960" />
@@ -528,10 +514,6 @@
       <bpmndi:BPMNEdge id="Flow_1pq1pc7_di" bpmnElement="Flow_1pq1pc7">
         <di:waypoint x="1070" y="960" />
         <di:waypoint x="1120" y="960" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_12ncslv_di" bpmnElement="Flow_12ncslv">
-        <di:waypoint x="1900" y="960" />
-        <di:waypoint x="1922" y="960" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1k0tmiv_di" bpmnElement="Flow_1k0tmiv">
         <di:waypoint x="870" y="920" />
