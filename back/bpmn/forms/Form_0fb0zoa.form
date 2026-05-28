@@ -87,6 +87,28 @@
         "columns": null
       },
       "id": "Field_03ml88y"
+    },
+    {
+      "label": "Инвентарь",
+      "components": [
+        {
+          "label": "Простые вещи",
+          "type": "textfield",
+          "layout": {
+            "row": "Row_168xyfc",
+            "columns": null
+          },
+          "id": "Field_0vawob6",
+          "key": "textfield_xurur8"
+        }
+      ],
+      "showOutline": true,
+      "type": "group",
+      "layout": {
+        "row": "Row_03hciqo",
+        "columns": null
+      },
+      "id": "Field_0ncec5w"
     }
   ],
   "type": "default",

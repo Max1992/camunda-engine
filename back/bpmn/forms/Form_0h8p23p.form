@@ -50,12 +50,12 @@
       "type": "group",
       "layout": {
         "row": "Row_127v8tt",
-        "columns": null
+        "columns": 7
       },
       "id": "Field_1iw1o5v"
     },
     {
-      "label": "Союзники /Навыки",
+      "label": "Инвентарь",
       "components": [
         {
           "label": "Карты навыков",
@@ -78,6 +78,16 @@
           "id": "Field_03z63qo",
           "key": "lst_ally",
           "readonly": false
+        },
+        {
+          "label": "Простые вещи",
+          "type": "textfield",
+          "layout": {
+            "row": "Row_04unrj6",
+            "columns": null
+          },
+          "id": "Field_17u8rqc",
+          "key": "lst_simpleItem"
         }
       ],
       "showOutline": true,
