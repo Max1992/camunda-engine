@@ -135,6 +135,17 @@
           "id": "Field_1ozgtxi",
           "key": "availableDices",
           "readonly": true
+        },
+        {
+          "label": "Необходимо успехов",
+          "type": "number",
+          "layout": {
+            "row": "Row_0el5fhk",
+            "columns": null
+          },
+          "id": "Field_1q10obj",
+          "key": "requiredSuccesses",
+          "readonly": "on"
         }
       ],
       "showOutline": true,
@@ -173,6 +184,16 @@
             "max": "=availableClue"
           },
           "readonly": false
+        },
+        {
+          "label": "Потратить улику",
+          "type": "checkbox",
+          "layout": {
+            "row": "Row_1e965mc",
+            "columns": null
+          },
+          "id": "Field_054hp87",
+          "key": "spendClue"
         }
       ],
       "showOutline": true,
@@ -184,10 +205,10 @@
       "id": "Field_12y5mwc"
     },
     {
-      "label": "Применить",
+      "label": "Применить с текущими настройками",
       "type": "checkbox",
       "layout": {
-        "row": "Row_159mdht",
+        "row": "Row_045duke",
         "columns": null
       },
       "id": "Field_0zak0de",

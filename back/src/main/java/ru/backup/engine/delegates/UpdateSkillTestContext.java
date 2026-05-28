@@ -4,9 +4,16 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.Map;
 import org.springframework.stereotype.Component;
 import ru.backup.engine.models.SkillTestContext;
+import ru.backup.engine.services.SkillTestContextService;
 
 @Component("updateSkillTestContext")
 public class UpdateSkillTestContext extends JavaDelegateHandler {
+
+  private final SkillTestContextService skillTestContextService;
+
+  public UpdateSkillTestContext(SkillTestContextService skillTestContextService) {
+    this.skillTestContextService = skillTestContextService;
+  }
 
   @Override
   protected void onExecute(DelegateExecutionHandler execution) throws Exception {
@@ -20,7 +27,7 @@ public class UpdateSkillTestContext extends JavaDelegateHandler {
     context.availableDices = execution.getVariableLocal("availableDices");
     context.base = execution.getVariableLocal("base");
 
-    Map<String, Object> testContext = mapper.convertValue(context, Map.class);
-    execution.setVariableLocal("context", testContext);
+    execution.setVariableLocal("context", mapper.convertValue(context, Map.class));
+    skillTestContextService.update(context.playerId, context);
   }
 }

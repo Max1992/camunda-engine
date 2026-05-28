@@ -24,3 +24,17 @@ http://localhost:5001/engine-rest
   "item": ["ITEM_00018"]
 }
 ```
+# контекст проверки навыка
+```json
+{
+  "wasteOfClueCount": 0,
+  "skillType": "LUCK",
+  "difficulty": 0,
+  "playerId": "player_0001",
+  "mythId": "myth_0001",
+  "mythBonus": 0,
+  "requiredSuccesses": 1,
+  "availableDices": 0,
+  "base": 0
+}
+```

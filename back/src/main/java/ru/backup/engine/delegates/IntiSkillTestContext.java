@@ -5,14 +5,21 @@ import java.util.Map;
 import org.springframework.stereotype.Component;
 import ru.backup.engine.enums.SkillType;
 import ru.backup.engine.models.SkillTestContext;
+import ru.backup.engine.services.SkillTestContextService;
 
 @Component("intiSkillTestContext")
 public class IntiSkillTestContext extends JavaDelegateHandler {
 
+  private final SkillTestContextService skillTestContextService;
+
+  public IntiSkillTestContext(SkillTestContextService skillTestContextService) {
+    this.skillTestContextService = skillTestContextService;
+  }
+
   @Override
   protected void onExecute(DelegateExecutionHandler execution) throws Exception {
 
-    SkillTestContext context = initContext(
+    SkillTestContext context = skillTestContextService.init(
         SkillType.valueOf(execution.getVariableLocal("skillType")),
         execution.getVariableLocal("difficulty"),
         execution.getVariableLocal("playerId"),
@@ -25,24 +32,5 @@ public class IntiSkillTestContext extends JavaDelegateHandler {
     Map<String, Object> testContext = mapper.convertValue(context, Map.class);
 
     execution.setVariableLocal("context", testContext);
-  }
-
-  private SkillTestContext initContext(
-      SkillType skillType,
-      int difficulty,
-      String playerId,
-      String mythId,
-      int mythBonus,
-      int requiredSuccesses)
-  {
-    SkillTestContext context = new SkillTestContext();
-    context.wasteOfClueCount = 0;
-    context.skillType = skillType;
-    context.difficulty = difficulty;
-    context.playerId = playerId;
-    context.mythId = mythId;
-    context.mythBonus = mythBonus;
-    context.requiredSuccesses = requiredSuccesses;
-    return context;
   }
 }
